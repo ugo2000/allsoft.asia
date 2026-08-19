@@ -37,11 +37,15 @@ def call(method, params=None, payload=None):
         url += "?" + "&".join(f"{k}={urllib.parse.quote(str(v))}" for k, v in params.items())
 
     if CURL:
-        args = [CURL, "-s", "-A", UA, "-H", "Content-Type: application/json", "-X", method, url]
+        args = [CURL, "-s", "--ssl-no-revoke", "--connect-timeout", "10",
+                "-A", UA, "-H", "Content-Type: application/json", "-X", method, url]
         if payload is not None:
             args += ["-d", json.dumps(payload, ensure_ascii=False)]
-        out = subprocess.check_output(args, timeout=25)
-        return json.loads(out.decode("utf-8"))
+        try:
+            out = subprocess.check_output(args, timeout=25)
+            return json.loads(out.decode("utf-8"))
+        except Exception:
+            pass  # curl 挂了降级 urllib
 
     data = json.dumps(payload).encode() if payload else None
     req = urllib.request.Request(url, data=data, method=method, headers={

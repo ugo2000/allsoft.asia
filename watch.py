@@ -49,10 +49,11 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 
 
 def _call_curl(method, url, payload):
-    args = [CURL, "-s", "-A", UA, "-H", "Content-Type: application/json", "-X", method, url]
+    args = [CURL, "-s", "--ssl-no-revoke", "--connect-timeout", "10",
+            "-A", UA, "-H", "Content-Type: application/json", "-X", method, url]
     if payload is not None:
         args += ["-d", json.dumps(payload)]
-    out = subprocess.check_output(args, timeout=20)
+    out = subprocess.check_output(args, timeout=25)
     return json.loads(out.decode())
 
 
@@ -68,15 +69,21 @@ def _call_urllib(method, url, payload):
 def call(method, params=None, payload=None):
     global USE_CURL
     url = API + ("?" + urllib.parse.urlencode(params) if params else "")
+    # 先试 curl（有 --ssl-no-revoke 修复 Windows exit 35），失败降级 urllib
     if USE_CURL and CURL:
-        return _call_curl(method, url, payload)
+        try:
+            return _call_curl(method, url, payload)
+        except Exception:
+            USE_CURL = False  # curl 挂了，本轮降级 urllib
     try:
         return _call_urllib(method, url, payload)
     except urllib.error.HTTPError as e:
-        # 被 Cloudflare 拦（403），永久切 curl 重试一次
         if e.code == 403 and CURL:
             USE_CURL = True
-            return _call_curl(method, url, payload)
+            try:
+                return _call_curl(method, url, payload)
+            except Exception:
+                pass
         raise
 
 
