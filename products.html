@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>产品与服务 - AllSoft.asia | ChatHub聊天 · AI工具箱 · 软件开发</title>
-<meta name="description" content="AllSoft.asia 产品线：ChatHub在线聊天平台（实时群聊/匿名聊天/随机匹配）、AI工具箱（文案/翻译/摘要/代码）、定制软件开发服务。免费试用。">
-<meta name="keywords" content="在线聊天平台,AI工具箱,软件开发服务,ChatHub,免费AI工具,群聊系统">
+<title>软件集合 - AllSoft.asia | 自研软件目录：ChatHub在线聊天 · 魔鬼代言人AI质检</title>
+<meta name="description" content="AllSoft.asia 软件集合：一人独立工作室的全部自研软件目录。ChatHub 在线聊天（已上线，chathub.asia）、魔鬼代言人 AI 决策质检（孵化中）。每款软件独立运营，此处统一收录。">
+<meta name="keywords" content="软件集合,软件目录,自研软件,独立开发,ChatHub,在线聊天,AI决策质检,魔鬼代言人,MCP服务">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://allsoft.asia/products">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://allsoft.asia/products.html">
-<meta property="og:title" content="产品与服务 - AllSoft.asia">
-<meta property="og:description" content="ChatHub聊天、AI工具箱、软件开发服务。免费试用。">
+<meta property="og:url" content="https://allsoft.asia/products">
+<meta property="og:title" content="软件集合 - AllSoft.asia">
+<meta property="og:description" content="一人工作室的全部自研软件目录。ChatHub 已上线，魔鬼代言人孵化中。">
 <meta property="og:site_name" content="AllSoft.asia">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="产品与服务 - AllSoft.asia">
-<meta name="twitter:description" content="ChatHub聊天、AI工具箱、软件开发服务。">
+<meta name="twitter:title" content="软件集合 - AllSoft.asia">
+<meta name="twitter:description" content="一人工作室的全部自研软件目录。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='70' font-size='52' font-weight='bold' text-anchor='middle' fill='white'>A</text></svg>">
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">
@@ -25,7 +25,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type":"ListItem","position":1,"name":"首页","item":"https://allsoft.asia/"},
-    {"@type":"ListItem","position":2,"name":"产品","item":"https://allsoft.asia/products.html"}
+    {"@type":"ListItem","position":2,"name":"软件集合","item":"https://allsoft.asia/products"}
   ]
 }
 </script>
@@ -33,10 +33,10 @@
 {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "AllSoft.asia 产品列表",
+  "name": "AllSoft.asia 自研软件集合",
   "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"ChatHub 在线聊天","item":"https://allsoft.asia/chat.html"},
-    {"@type":"ListItem","position":2,"name":"AI 工具箱","item":"https://allsoft.asia/products.html"}
+    {"@type":"ListItem","position":1,"name":"ChatHub 在线聊天","url":"https://allsoft.asia/products/chathub"},
+    {"@type":"ListItem","position":2,"name":"魔鬼代言人 AI 决策质检","url":"https://allsoft.asia/products/devils-advocate"}
   ]
 }
 </script>
@@ -48,9 +48,7 @@
       <a href="/" class="nav-brand"><span class="logo-icon">A</span><span class="brand-text">AllSoft.asia</span></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="/">首页</a></li>
-        <li><a href="/products" class="active">产品</a></li>
-        <li><a href="/chat">在线聊天</a></li>
-        <li><a href="/pricing">定价</a></li>
+        <li><a href="/products" class="active">软件集合</a></li>
         <li><a href="/blog">博客</a></li>
         <li><a href="/faq">常见问题</a></li>
         <li><a href="/about">关于</a></li>
@@ -63,102 +61,107 @@
 
 <div class="page-header">
   <div class="container">
-    <nav class="breadcrumb"><a href="/">首页</a><span class="sep">/</span>产品</nav>
-    <h1>产品与服务</h1>
-    <p>从聊天到AI，从工具到开发，我们提供完整的技术解决方案</p>
+    <nav class="breadcrumb"><a href="/">首页</a><span class="sep">/</span>软件集合</nav>
+    <h1>软件集合</h1>
+    <p>一人工作室的全部自研软件，每款独立运营，此处统一收录</p>
   </div>
 </div>
 
 <section class="section">
   <div class="container">
-    <!-- ChatHub -->
-    <div class="product-card mb-8" style="max-width:900px;margin:0 auto 32px;">
-      <div class="product-head" style="padding:32px 32px 0;">
-        <span class="product-tag tag-live">● 在线运营</span>
-        <h3 style="font-size:1.6rem;">ChatHub 在线聊天平台</h3>
-        <p class="product-desc" style="font-size:1rem;">基于Cloudflare Workers + Durable Objects构建的实时聊天系统。WebSocket双向通信，消息即时送达，支持大规模并发。</p>
-      </div>
-      <div class="product-body" style="padding:0 32px 32px;">
-        <div class="features-grid" style="margin-bottom:28px;">
-          <div class="feature-card">
-            <div class="icon">💬</div>
-            <h3>实时群聊</h3>
-            <p>WebSocket实时通信，消息毫秒级送达。支持文字、表情、图片，多人在线畅聊。</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">👻</div>
-            <h3>匿名聊天</h3>
-            <p>无需注册，打开即用。保护隐私，自由表达。可随时升级为注册用户。</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">🎲</div>
-            <h3>随机匹配</h3>
-            <p>一键随机匹配聊天对象，认识来自世界各地的新朋友。</p>
-          </div>
-        </div>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="icon">🟢</div>
-            <h3>在线状态</h3>
-            <p>实时显示用户在线/离线状态，知道谁在等你回复。</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">💳</div>
-            <h3>微信支付</h3>
-            <p>集成微信支付，灵活充值额度。用多少付多少，价格透明。</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">📊</div>
-            <h3>用量统计</h3>
-            <p>清晰展示消息用量、充值记录，消费明明白白。</p>
-          </div>
-        </div>
-        <div class="mt-6">
-          <a href="/chat" class="btn btn-primary btn-lg">立即体验 ChatHub →</a>
-          <a href="/pricing" class="btn btn-outline btn-lg ml-2">查看定价</a>
-        </div>
-      </div>
-    </div>
+    <div class="products-grid">
 
-    <!-- AI Toolbox -->
-    <div class="product-card mb-8" style="max-width:900px;margin:0 auto 32px;">
-      <div class="product-head" style="padding:32px 32px 0;">
-        <span class="product-tag tag-beta">Beta 测试中</span>
-        <h3 style="font-size:1.6rem;">AI 工具箱</h3>
-        <p class="product-desc" style="font-size:1rem;">集合多种AI能力的在线工具箱，国内直连无需翻墙。基于大语言模型，覆盖写作、翻译、摘要、编程等场景。</p>
-      </div>
-      <div class="product-body" style="padding:0 32px 32px;">
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="icon">✍️</div>
-            <h3>AI写作</h3>
-            <p>文案、广告语、邮件、文章……输入需求，AI帮你生成。支持多种风格和语气。</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">🌍</div>
-            <h3>智能翻译</h3>
-            <p>中英日韩多语言互译，比传统翻译更懂上下文和语境。</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">📝</div>
-            <h3>长文摘要</h3>
-            <p>粘贴长文，一键提取核心要点。读书笔记、会议纪要利器。</p>
-          </div>
+      <!-- ChatHub -->
+      <div class="product-card">
+        <div class="product-head">
+          <span class="product-tag tag-live">● 已上线</span>
+          <h3>ChatHub 在线聊天</h3>
+          <p class="product-desc">实时在线聊天平台。群聊、匿名聊天、随机匹配，打开即用。独立域名 chathub.asia 运营，Cloudflare Workers + Durable Objects 全边缘架构。</p>
         </div>
-        <div class="mt-6">
-          <a href="/contact" class="btn btn-outline btn-lg">申请内测 →</a>
+        <div class="product-body">
+          <ul class="product-features">
+            <li>实时群聊，WebSocket 毫秒级送达</li>
+            <li>匿名聊天，无需注册</li>
+            <li>随机匹配认识新朋友</li>
+            <li>在线状态实时显示</li>
+            <li>微信支付灵活充值</li>
+          </ul>
+          <a href="/products/chathub" class="btn btn-primary">产品详情</a>
+          <a href="/chat" class="btn btn-outline ml-2">直接体验</a>
         </div>
       </div>
+
+      <!-- Devil's Advocate -->
+      <div class="product-card">
+        <div class="product-head">
+          <span class="product-tag tag-beta">⚙️ 孵化中</span>
+          <h3>魔鬼代言人 · AI 决策质检</h3>
+          <p class="product-desc">面向 AI 智能体的决策质检服务。当你的 AI 要做重大决策时，让另一个独立 AI 扮演「魔鬼代言人」来挑刺，减少 AI 一意孤行的风险。MCP/REST 接口调用，USDT 按次结算。</p>
+        </div>
+        <div class="product-body">
+          <ul class="product-features">
+            <li>AI 决策独立审查与反方论证</li>
+            <li>MCP / REST 双接口接入</li>
+            <li>USDT(TRC20) 链上按次结算</li>
+            <li>交易账本全程可查</li>
+          </ul>
+          <a href="/products/devils-advocate" class="btn btn-primary">了解进度</a>
+        </div>
+      </div>
+
+      <!-- Next -->
+      <div class="product-card">
+        <div class="product-head">
+          <span class="product-tag">🧪 筹备中</span>
+          <h3>下一款软件</h3>
+          <p class="product-desc">工作室永远有新想法在验证。选题先过市场评分，再过快速原型，两关都过才上线。孵化过程在博客公开，欢迎围观。</p>
+        </div>
+        <div class="product-body">
+          <ul class="product-features">
+            <li>选题评分制：市场 × 可行性</li>
+            <li>快速原型，以天计验证</li>
+            <li>跑通即上线，不跑通即放弃</li>
+          </ul>
+          <a href="/blog" class="btn btn-outline">围观孵化过程</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <section class="section section-alt">
   <div class="container">
+    <div class="section-header">
+      <h2>收录标准</h2>
+      <p>能进这个集合的软件，都过三关</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">🎯</div>
+        <h3>真需求</h3>
+        <p>先有真实使用场景，再动手写代码。为技术而技术的项目不进集合。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🛠️</div>
+        <h3>自己就是用户</h3>
+        <p>每款软件工作室自己先用起来。自己都不用的软件，没资格推荐给别人。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📈</div>
+        <h3>能自负盈亏</h3>
+        <p>免费资源打底，收入模式清晰。长期靠爱发电的软件会被果断关停。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
     <div class="cta-banner">
-      <h2>有定制开发需求？</h2>
-      <p>我们提供Web应用、API接口、Cloudflare Workers部署等定制开发服务</p>
-      <a href="/contact" class="btn btn-lg">联系咨询 →</a>
+      <h2>有合作或想法？</h2>
+      <p>无论是接入魔鬼代言人服务，还是聊聊软件孵化，都欢迎</p>
+      <a href="/contact" class="btn btn-lg">联系工作室 →</a>
     </div>
   </div>
 </section>
@@ -166,9 +169,9 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div><div class="footer-brand">AllSoft.asia</div><p class="footer-desc">AI驱动的智能软件解决方案。在线聊天、AI工具、软件开发，一站式服务。</p></div>
-      <div class="footer-col"><h4>产品</h4><ul><li><a href="/chat">ChatHub 聊天</a></li><li><a href="/products">AI 工具箱</a></li><li><a href="/pricing">定价方案</a></li></ul></div>
-      <div class="footer-col"><h4>资源</h4><ul><li><a href="/blog">博客</a></li><li><a href="/faq">常见问题</a></li><li><a href="/about">关于我们</a></li><li><a href="/contact">联系我们</a></li></ul></div>
+      <div><div class="footer-brand">AllSoft.asia</div><p class="footer-desc">一人独立软件工作室的自研软件集合站。小而美，持续孵化。</p></div>
+      <div class="footer-col"><h4>软件集合</h4><ul><li><a href="/products/chathub">ChatHub 在线聊天</a></li><li><a href="/products/devils-advocate">魔鬼代言人 · AI质检</a></li><li><a href="/chat">ChatHub 直接入口</a></li></ul></div>
+      <div class="footer-col"><h4>资源</h4><ul><li><a href="/blog">博客</a></li><li><a href="/faq">常见问题</a></li><li><a href="/about">关于工作室</a></li><li><a href="/contact">联系我们</a></li></ul></div>
       <div class="footer-col"><h4>法律</h4><ul><li><a href="/privacy">隐私政策</a></li><li><a href="/terms">服务条款</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>&copy; 2026 AllSoft.asia. All rights reserved.</span><span>Made with ❤️ on Cloudflare</span></div>

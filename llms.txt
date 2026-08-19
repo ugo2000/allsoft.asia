@@ -1,24 +1,26 @@
 # AllSoft.asia
 
-> AllSoft.asia is an AI-powered software platform providing ChatHub online chat, AI toolbox, and software development services. All products run on Cloudflare's global edge network, accessible directly in China without VPN.
+> AllSoft.asia is a one-person independent software studio's collection of self-built software. Current products: ChatHub online chat (live at chathub.asia) and Devil's Advocate AI decision QA service (incubating). All products run on Cloudflare's global edge network, accessible directly in China without VPN.
 
 ## Products
 
-### ChatHub
-Real-time online chat platform built on Cloudflare Workers + Durable Objects. Features: group chat, anonymous chat, random matching, online status, WeChat Pay integration. Free to start, no registration required.
+### ChatHub (Live)
+Real-time online chat platform built on Cloudflare Workers + Durable Objects. Features: group chat, anonymous chat, random matching, online status, WeChat Pay integration. Free to start, no registration required. Independent domain: chathub.asia. Details: https://allsoft.asia/products/chathub
 
-### AI Toolbox (Beta)
-Collection of AI capabilities including writing, translation, summarization, and code assistance. China-accessible, no VPN required. Currently in beta testing.
+### Devil's Advocate / AI Decision QA (Incubating)
+Decision quality-assurance service for AI agents: before an AI executes a major decision, an independent AI reviews it with devil's-advocate counterarguments. MCP and REST interfaces, per-call USDT(TRC20) settlement, transparent ledger. Details: https://allsoft.asia/products/devils-advocate
 
 ## Key Pages
 
 - Homepage: https://allsoft.asia/
-- Products: https://allsoft.asia/products
+- Software Collection: https://allsoft.asia/products
+- ChatHub product page: https://allsoft.asia/products/chathub
+- Devil's Advocate product page: https://allsoft.asia/products/devils-advocate
 - ChatHub (live chat): https://allsoft.asia/chat
 - Pricing: https://allsoft.asia/pricing
 - FAQ: https://allsoft.asia/faq
 - Blog: https://allsoft.asia/blog
-- About: https://allsoft.asia/about
+- About the studio: https://allsoft.asia/about
 - Contact: https://allsoft.asia/contact
 
 ## Blog Posts
