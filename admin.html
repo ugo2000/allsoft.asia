@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>网站数据 - AllSoft.asia</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='70' font-size='52' font-weight='bold' text-anchor='middle' fill='white'>A</text></svg>">
-<link rel="stylesheet" href="/css/style.css?v=3">
+<link rel="stylesheet" href="/css/style.css?v=4">
 <style>
 .data-wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 24px 0; }
@@ -49,6 +49,14 @@ tr:hover td { background: #f8fafc; }
 .tab { padding: 10px 20px; cursor: pointer; font-size: 14px; color: #64748b; border-bottom: 2px solid transparent; margin-bottom: -2px; }
 .tab.active { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
 .tab:hover { color: #2563eb; }
+/* 夜间主题（跟随全站） */
+html.dark body { background: var(--c-bg); color: var(--c-text); }
+html.dark .stat-card { background: var(--c-bg-alt); border-color: var(--c-border); }
+html.dark .section { background: var(--c-bg-alt); border-color: var(--c-border); }
+html.dark th { background: var(--c-bg); }
+html.dark tr:hover td { background: var(--c-bg); }
+html.dark .bar-track { background: var(--c-bg); }
+html.dark .tabs { border-bottom-color: var(--c-border); }
 </style>
 </head>
 <body>
@@ -270,5 +278,6 @@ loadAll();
 // Auto refresh every 60s
 setInterval(loadAll, 60000);
 </script>
+<script src="/js/theme.js"></script>
 </body>
 </html>
