@@ -15,6 +15,11 @@
   }
 
   function detect() {
+    try {
+      var p = new URLSearchParams(location.search);
+      var t = p.get("theme");
+      if (t === "dark" || t === "light") return t;
+    } catch (e) {}
     var saved = null;
     try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
     if (saved === "dark") return "dark";

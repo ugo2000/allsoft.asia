@@ -12,3 +12,13 @@ node_modules/
 *.log
 .DS_Store
 Thumbs.db
+# Edge headless 用户数据（截图调试用，绝不入仓）
+_edgedata/
+# 调试截图/临时文件
+_seed.html
+admin_*.png
+# Edge headless 用户数据（截图调试用，绝不入仓）
+_edgedata/
+# 调试截图/临时文件
+_seed.html
+admin_*.png
