@@ -1,0 +1,7 @@
+# Cloudflare Pages _redirects file
+
+# Redirect old paths to new ones (if needed)
+# /old-path  /new-path  301
+
+# SPA fallback not needed (static multi-page site)
+# 404 handled by 404.html

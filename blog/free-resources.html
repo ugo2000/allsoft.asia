@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何善用免费资源零成本创业 - GitHub+Cloudflare建站完全教程 | AllSoft.asia</title>
+<meta name="description" content="用GitHub+Cloudflare+Vercel等免费资源零成本搭建网站和在线业务的完整教程。代码托管、网站部署、SSL证书、CDN加速全部免费，手把手教你操作。">
+<meta name="keywords" content="免费资源创业,GitHub建站,Cloudflare Pages,零成本创业,免费SSL,免费CDN,免费建站">
+<meta name="robots" content="index, follow">
+<meta name="author" content="AllSoft.asia">
+<link rel="canonical" href="https://allsoft.asia/blog/free-resources.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://allsoft.asia/blog/free-resources.html">
+<meta property="og:title" content="如何善用免费资源零成本创业">
+<meta property="og:description" content="GitHub+Cloudflare等免费资源组合，足够撑起完整线上业务。手把手教程。">
+<meta property="og:site_name" content="AllSoft.asia">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-19T10:00:00+08:00">
+<meta property="article:author" content="AllSoft.asia">
+<meta property="article:section" content="资源分享">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="如何善用免费资源零成本创业">
+<meta name="twitter:description" content="GitHub+Cloudflare等免费资源组合，撑起完整线上业务。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='70' font-size='52' font-weight='bold' text-anchor='middle' fill='white'>A</text></svg>">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "如何善用免费资源零成本创业",
+  "description": "用GitHub+Cloudflare+Vercel等免费资源零成本搭建网站和在线业务的完整教程。",
+  "datePublished": "2026-08-19T10:00:00+08:00",
+  "dateModified": "2026-08-19T10:00:00+08:00",
+  "author": {"@type":"Organization","name":"AllSoft.asia"},
+  "publisher": {"@type":"Organization","name":"AllSoft.asia","url":"https://allsoft.asia"},
+  "mainEntityOfPage": "https://allsoft.asia/blog/free-resources.html",
+  "articleSection": "资源分享",
+  "keywords": "免费资源,GitHub,Cloudflare Pages,Vercel,零成本创业,免费建站"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "如何用免费资源搭建网站",
+  "description": "使用GitHub和Cloudflare Pages零成本搭建网站的完整步骤",
+  "step": [
+    {"@type":"HowToStep","name":"注册GitHub账号","text":"在github.com注册免费账号，创建代码仓库。"},
+    {"@type":"HowToStep","name":"编写网站代码","text":"用HTML/CSS/JS编写网站，推送到GitHub仓库。"},
+    {"@type":"HowToStep","name":"连接Cloudflare Pages","text":"在Cloudflare Dashboard中连接GitHub仓库，配置Pages项目。"},
+    {"@type":"HowToStep","name":"绑定域名","text":"在Cloudflare添加自定义域名，自动配置SSL和CDN。"},
+    {"@type":"HowToStep","name":"配置SEO","text":"添加meta标签、sitemap.xml、robots.txt等SEO文件。"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type":"Question",
+      "name":"建网站真的可以零成本吗？",
+      "acceptedAnswer":{"@type":"Answer","text":"可以。代码托管用GitHub（免费），网站部署用Cloudflare Pages（免费），SSL证书Cloudflare自动配（免费），CDN加速Cloudflare全球网络（免费）。唯一需要花钱的是域名，一年约60元。"}
+    },
+    {
+      "@type":"Question",
+      "name":"Cloudflare Pages免费额度够用吗？",
+      "acceptedAnswer":{"@type":"Answer","text":"免费版每月500次构建、无限请求、无限带宽。对于个人网站和小型项目完全够用。即使日访问量上万也不需要升级。"}
+    },
+    {
+      "@type":"Question",
+      "name":"GitHub Pages和Cloudflare Pages哪个好？",
+      "acceptedAnswer":{"@type":"Answer","text":"Cloudflare Pages更好。它支持更多功能（自定义headers、重定向、边缘函数），全球CDN节点更多（200+城市），而且不限制带宽。GitHub Pages每月100GB带宽限制，Cloudflare Pages无限制。"}
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="nav-brand"><span class="logo-icon">A</span><span class="brand-text">AllSoft.asia</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">首页</a></li>
+        <li><a href="/products.html">产品</a></li>
+        <li><a href="/chat.html">在线聊天</a></li>
+        <li><a href="/pricing.html">定价</a></li>
+        <li><a href="/blog.html" class="active">博客</a></li>
+        <li><a href="/faq.html">常见问题</a></li>
+        <li><a href="/about.html">关于</a></li>
+        <li><a href="/contact.html" class="btn btn-primary btn-sm nav-cta">联系我们</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="breadcrumb"><a href="/">首页</a><span class="sep">/</span><a href="/blog.html">博客</a><span class="sep">/</span>如何善用免费资源零成本创业</nav>
+</div>
+
+<article class="article">
+  <div class="container-narrow">
+    <div class="article-header">
+      <span class="blog-cat" style="color:var(--c-primary);font-weight:600;">资源分享</span>
+      <h1>如何善用免费资源零成本创业</h1>
+      <div class="article-meta">
+        <span>📅 2026-08-19</span>
+        <span>⏱ 10分钟阅读</span>
+        <span>✍️ AllSoft.asia</span>
+      </div>
+    </div>
+    <div class="article-body">
+      <p>这篇文章是写给那些想做事但觉得"没钱开始"的人看的。</p>
+      <p>先说结论：2026年，做互联网产品或内容，技术成本可以做到接近零。你需要的唯一投入是域名（一年60块）和你的时间。其余全有免费方案。</p>
+      <p>下面是我实际在用的免费资源清单，以及怎么把它们组合起来撑起一个完整的线上业务。</p>
+
+      <h2>一、代码托管：GitHub</h2>
+      <p>GitHub不用多说了。免费版支持无限公开仓库、无限私有仓库（最多3人协作），对个人开发者完全够用。</p>
+      <p>但GitHub的用处远不止存代码：</p>
+      <ul>
+        <li><strong>GitHub Pages</strong>：可以免费托管静态网站</li>
+        <li><strong>GitHub Actions</strong>：免费CI/CD，每月2000分钟免费额度</li>
+        <li><strong>GitHub Issues</strong>：当项目管理工具用</li>
+        <li><strong>GitHub Packages</strong>：免费托管npm/Docker包</li>
+      </ul>
+
+      <h2>二、网站托管：Cloudflare Pages</h2>
+      <p>这是我最推荐的免费建站方案。比GitHub Pages强大得多。</p>
+
+      <h3>Cloudflare Pages免费版包含：</h3>
+      <ul>
+        <li>每月500次构建</li>
+        <li>无限请求量</li>
+        <li>无限带宽</li>
+        <li>200+全球CDN节点（包括中国大陆多个城市）</li>
+        <li>自动HTTPS</li>
+        <li>自定义域名</li>
+        <li>预览部署（每个PR一个预览链接）</li>
+        <li>Cloudflare Workers集成（每天10万次免费请求）</li>
+      </ul>
+
+      <h3>部署步骤</h3>
+      <ol>
+        <li>在GitHub创建仓库，把网站代码推进去</li>
+        <li>登录Cloudflare Dashboard，进入Pages</li>
+        <li>点击"Create a project" → "Connect to Git"</li>
+        <li>选择GitHub仓库，配置构建命令和输出目录</li>
+        <li>点击部署，等2分钟，网站就上线了</li>
+        <li>在"Custom domains"里添加你的域名</li>
+      </ol>
+
+      <p>就这么简单。每次你push代码到GitHub，Cloudflare会自动构建部署。不需要手动操作。</p>
+
+      <h2>三、域名注册</h2>
+      <p>域名是唯一需要花钱的部分，但也不贵。推荐几个便宜的域名注册商：</p>
+      <table>
+        <thead>
+          <tr><th>注册商</th><th>.com 首年</th><th>.asia 首年</th><th>特点</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Namesilo</td><td>约¥70</td><td>约¥60</td><td>免费隐私保护，续费不涨价</td></tr>
+          <tr><td>阿里云</td><td>约¥55</td><td>约¥35</td><td>国内访问快，需备案</td></tr>
+          <tr><td>Cloudflare Registrar</td><td>约¥60</td><td>不卖</td><td>成本价，无加价</td></tr>
+        </tbody>
+      </table>
+      <p>注意：如果域名托管在Cloudflare且服务器在海外，<strong>不需要备案</strong>。allsoft.asia就没有备案，国内照样能访问。</p>
+
+      <h2>四、SSL证书：免费</h2>
+      <p>用Cloudflare的话，SSL证书自动配置，完全免费，自动续期。你什么都不用做。</p>
+      <p>如果不用Cloudflare，可以用Let's Encrypt，也是免费SSL证书。</p>
+
+      <h2>五、CDN加速：免费</h2>
+      <p>Cloudflare的CDN是免费版就包含的。全球200+城市有节点，包括北京、上海、广州、深圳等多个中国城市。</p>
+      <p>开启CDN后，你的网站在全球各地的加载速度都会提升。用户访问的是最近的CDN节点，不是你的源站。</p>
+
+      <h2>六、数据分析：免费</h2>
+
+      <h3>Google Search Console</h3>
+      <p>查看你的网站在Google搜索中的表现：展现量、点击量、排名关键词。完全免费。</p>
+
+      <h3>Cloudflare Analytics</h3>
+      <p>Cloudflare自带的流量分析，可以看到访问量、来源国家、热门页面。免费版足够用。</p>
+
+      <h3>Microsoft Clarity</h3>
+      <p>微软的免费用户行为分析工具。热力图、会话回放、点击追踪，完全免费无限制。</p>
+
+      <h2>七、SEO工具：免费</h2>
+      <ul>
+        <li><strong>Google Search Console</strong>：提交sitemap、查看索引状态、监控搜索表现</li>
+        <li><strong>Bing Webmaster Tools</strong>：微软搜索引擎的站长工具</li>
+        <li><strong>Schema Markup Validator</strong>：验证结构化数据</li>
+        <li><strong>PageSpeed Insights</strong>：测试网页性能和Core Web Vitals</li>
+      </ul>
+
+      <h2>八、其他免费资源</h2>
+
+      <h3>图片素材</h3>
+      <ul>
+        <li><strong>Pexels</strong>：免费图片和视频，CC0许可，可商用</li>
+        <li><strong>Unsplash</strong>：高质量免费图片</li>
+        <li><strong>SVG Logos</strong>：各种品牌Logo的SVG版本</li>
+      </ul>
+
+      <h3>图标和字体</h3>
+      <ul>
+        <li><strong>Google Fonts</strong>：免费字体，CDN加载</li>
+        <li><strong>Feather Icons</strong>：简洁的SVG图标库</li>
+        <li><strong>Favicon Generator</strong>：在线生成favicon</li>
+      </ul>
+
+      <h3>API服务</h3>
+      <ul>
+        <li><strong>Cloudflare Workers</strong>：每天10万次免费请求，跑serverless函数</li>
+        <li><strong>Cloudflare KV</strong>：免费键值存储，1GB存储</li>
+        <li><strong>Cloudflare Durable Objects</strong>：实时状态管理（ChatHub就是用它做的）</li>
+      </ul>
+
+      <h2>成本汇总</h2>
+      <table>
+        <thead>
+          <tr><th>项目</th><th>工具</th><th>年度成本</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>代码托管</td><td>GitHub</td><td>¥0</td></tr>
+          <tr><td>网站托管</td><td>Cloudflare Pages</td><td>¥0</td></tr>
+          <tr><td>SSL证书</td><td>Cloudflare</td><td>¥0</td></tr>
+          <tr><td>CDN加速</td><td>Cloudflare</td><td>¥0</td></tr>
+          <tr><td>数据分析</td><td>GSC + Clarity</td><td>¥0</td></tr>
+          <tr><td>图片素材</td><td>Pexels / Unsplash</td><td>¥0</td></tr>
+          <tr><td>Serverless</td><td>Cloudflare Workers</td><td>¥0</td></tr>
+          <tr><td>域名</td><td>Namesilo / 阿里云</td><td>约¥60</td></tr>
+          <tr><td><strong>合计</strong></td><td></td><td><strong>约¥60/年</strong></td></tr>
+        </tbody>
+      </table>
+
+      <blockquote>一年60块钱，撑起一个有SSL、有CDN、有数据分析、有SEO的完整网站。这在十年前至少要花几千块。</blockquote>
+
+      <h2>常见问题</h2>
+
+      <h3>免费方案有隐藏限制吗？</h3>
+      <p>Cloudflare Pages免费版每月500次构建（每次push算一次），无限带宽无限请求。对个人项目和小网站完全够用。Cloudflare Workers每天10万次请求免费，如果超了再升级也不贵（每月$5）。</p>
+
+      <h3>不备案能用吗？</h3>
+      <p>可以。域名解析到Cloudflare的服务器（不是中国大陆服务器），就不需要ICP备案。国内用户通过Cloudflare的中国节点访问，速度也不错。allsoft.asia就是没备案的，国内一样正常访问。</p>
+
+      <h3>免费方案安全吗？</h3>
+      <p>Cloudflare本身就是全球最大的网络安全公司之一。免费版自带DDoS防护、SSL加密、基础WAF。安全性比大多数付费虚拟主机还高。</p>
+
+      <h2>下一步</h2>
+      <p>如果你看完这篇文章想动手建站，按这个顺序来：</p>
+      <ol>
+        <li>注册GitHub账号</li>
+        <li>买一个域名</li>
+        <li>注册Cloudflare账号，把域名DNS转过去</li>
+        <li>写好网站代码，推到GitHub</li>
+        <li>在Cloudflare Pages连接仓库，一键部署</li>
+      </ol>
+      <p>整个过程，快的半天就能搞定。有问题的话，来<a href="/chat.html">ChatHub</a>问我们。</p>
+    </div>
+  </div>
+</article>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>想看这个方案的实际效果？</h2>
+      <p>你正在浏览的 allsoft.asia 就是用这套免费方案搭建的</p>
+      <a href="/chat.html" class="btn btn-lg">体验ChatHub →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">AllSoft.asia</div><p class="footer-desc">AI驱动的智能软件解决方案。在线聊天、AI工具、软件开发，一站式服务。</p></div>
+      <div class="footer-col"><h4>产品</h4><ul><li><a href="/chat.html">ChatHub 聊天</a></li><li><a href="/products.html">AI 工具箱</a></li><li><a href="/pricing.html">定价方案</a></li></ul></div>
+      <div class="footer-col"><h4>资源</h4><ul><li><a href="/blog.html">博客</a></li><li><a href="/faq.html">常见问题</a></li><li><a href="/about.html">关于我们</a></li><li><a href="/contact.html">联系我们</a></li></ul></div>
+      <div class="footer-col"><h4>法律</h4><ul><li><a href="/privacy.html">隐私政策</a></li><li><a href="/terms.html">服务条款</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 AllSoft.asia. All rights reserved.</span><span>Made with ❤️ on Cloudflare</span></div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>
