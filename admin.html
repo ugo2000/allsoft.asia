@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>后台数据 - AllSoft.asia</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='70' font-size='52' font-weight='bold' text-anchor='middle' fill='white'>A</text></svg>">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.admin-wrap { max-width: 960px; margin: 0 auto; padding: 20px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0; }
+.stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; transition: box-shadow .2s; }
+.stat-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+.stat-card .num { font-size: 32px; font-weight: 700; color: #2563eb; }
+.stat-card .label { font-size: 13px; color: #64748b; margin-top: 4px; }
+.stat-card .sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+.chart-wrap { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 24px 0; }
+.chart-wrap h3 { margin: 0 0 16px; font-size: 16px; color: #1e293b; }
+#chartCanvas { width: 100%; height: 240px; }
+.table-wrap { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 24px 0; overflow-x: auto; }
+.table-wrap table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table-wrap th { text-align: left; padding: 8px 12px; color: #64748b; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
+.table-wrap td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; }
+.table-wrap tr:hover td { background: #f8fafc; }
+.admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.admin-header h1 { font-size: 24px; margin: 0; }
+.refresh-btn { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+.refresh-btn:hover { background: #1d4ed8; }
+.login-box { max-width: 360px; margin: 80px auto; text-align: center; }
+.login-box input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px; }
+.login-box button { width: 100%; padding: 12px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; }
+.login-box button:hover { background: #1d4ed8; }
+.loading { text-align: center; padding: 40px; color: #94a3b8; }
+.err-msg { color: #dc2626; font-size: 14px; text-align: center; padding: 20px; }
+.bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 200px; padding: 0 8px; }
+.bar { flex: 1; min-width: 0; background: linear-gradient(180deg, #3b82f6, #2563eb); border-radius: 4px 4px 0 0; position: relative; cursor: pointer; transition: opacity .2s; min-height: 2px; }
+.bar:hover { opacity: 0.8; }
+.bar:hover .bar-tip { display: block; }
+.bar-tip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #1e293b; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; z-index: 10; margin-bottom: 4px; }
+.external-links { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
+.external-links a { font-size: 13px; color: #2563eb; text-decoration: none; padding: 6px 12px; border: 1px solid #cbd5e1; border-radius: 6px; }
+.external-links a:hover { background: #f1f5f9; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="nav-brand"><span class="logo-icon">A</span><span class="brand-text">AllSoft.asia</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">首页</a></li>
+        <li><a href="/products">软件集合</a></li>
+        <li><a href="/admin" class="active">后台数据</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="admin-wrap">
+
+<!-- Login -->
+<div id="loginBox" class="login-box">
+  <h1 style="margin-bottom:8px;">后台数据</h1>
+  <p style="color:#64748b;font-size:14px;margin-bottom:20px;">输入访问密钥查看网站流量数据</p>
+  <input type="password" id="keyInput" placeholder="访问密钥" onkeydown="if(event.key==='Enter')doLogin()">
+  <button onclick="doLogin()">进入</button>
+  <p id="loginErr" class="err-msg" style="display:none;"></p>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard" style="display:none;">
+
+  <div class="admin-header">
+    <h1>网站流量数据</h1>
+    <button class="refresh-btn" onclick="loadData()">刷新</button>
+  </div>
+  <p style="color:#64748b;font-size:13px;">数据来源：Cloudflare 边缘网络 · 近 30 天</p>
+
+  <div class="external-links">
+    <a href="https://dash.cloudflare.com/40c232b7d826cb8cef7de637e8dc96ed/allsoft.asia/analytics" target="_blank">Cloudflare 分析 →</a>
+    <a href="https://dash.cloudflare.com/40c232b7d826cb8cef7de637e8dc96ed/pages/views/allsoft-asia" target="_blank">Pages 部署 →</a>
+  </div>
+
+  <div id="loading" class="loading">加载中...</div>
+
+  <div id="content" style="display:none;">
+    <div class="stats-grid" id="statsGrid"></div>
+    <div class="chart-wrap">
+      <h3>每日页面浏览量 (PV)</h3>
+      <div class="bar-chart" id="barChart"></div>
+    </div>
+    <div class="table-wrap">
+      <h3 style="margin:0 0 16px;font-size:16px;color:#1e293b;">每日明细</h3>
+      <table>
+        <thead>
+          <tr><th>日期</th><th>页面浏览</th><th>总请求</th><th>独立访客</th><th>流量</th></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+const API = '/api/analytics';
+let adminKey = sessionStorage.getItem('adminKey') || '';
+
+function fmt(n) {
+  if (n >= 1e9) return (n/1e9).toFixed(1) + 'G';
+  if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
+  return String(n);
+}
+
+function fmtDate(d) {
+  const dt = new Date(d + 'T00:00:00');
+  return (dt.getMonth()+1) + '/' + dt.getDate();
+}
+
+function doLogin() {
+  const val = document.getElementById('keyInput').value.trim();
+  if (!val) return;
+  adminKey = val;
+  document.getElementById('loginErr').style.display = 'none';
+  loadData();
+}
+
+async function loadData() {
+  document.getElementById('loginBox').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('content').style.display = 'none';
+
+  try {
+    const resp = await fetch(API + '?key=' + encodeURIComponent(adminKey));
+    if (resp.status === 401) {
+      sessionStorage.removeItem('adminKey');
+      adminKey = '';
+      document.getElementById('loginBox').style.display = 'block';
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('loginErr').textContent = '密钥错误，请重试';
+      document.getElementById('loginErr').style.display = 'block';
+      return;
+    }
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+
+    sessionStorage.setItem('adminKey', adminKey);
+    renderData(data);
+  } catch (e) {
+    document.getElementById('loading').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p><p style="text-align:center;font-size:13px;color:#94a3b8;">如果刚部署，密钥可能需要几分钟生效。</p>';
+  }
+}
+
+function renderData(data) {
+  const s = data.summary;
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+
+  // Stats cards
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="num">${fmt(s.pageViews)}</div><div class="label">页面浏览量</div><div class="sub">30天总计</div></div>
+    <div class="stat-card"><div class="num">${fmt(s.uniqueVisitors)}</div><div class="label">独立访客</div><div class="sub">30天总计</div></div>
+    <div class="stat-card"><div class="num">${fmt(s.requests)}</div><div class="label">总请求</div><div class="sub">30天总计</div></div>
+    <div class="stat-card"><div class="num">${s.avgPvPerVisitor}</div><div class="label">人均浏览</div><div class="sub">PV / 访客</div></div>
+    <div class="stat-card"><div class="num">${fmt(s.bandwidth)}</div><div class="label">流量消耗</div><div class="sub">30天总计 (bytes)</div></div>
+  `;
+
+  // Bar chart
+  const daily = data.daily.filter(d => d.pv > 0);
+  const maxPV = Math.max(...daily.map(d => d.pv), 1);
+  document.getElementById('barChart').innerHTML = daily.map(d => {
+    const h = (d.pv / maxPV * 100).toFixed(1);
+    return `<div class="bar" style="height:${h}%;"><span class="bar-tip">${fmtDate(d.date)}: ${d.pv} PV / ${d.uniq} UV</span></div>`;
+  }).join('');
+
+  // Table
+  document.getElementById('tableBody').innerHTML = [...data.daily].reverse().map(d => `
+    <tr>
+      <td>${d.date}</td>
+      <td>${d.pv}</td>
+      <td>${fmt(d.req)}</td>
+      <td>${d.uniq}</td>
+      <td>${fmt(d.bytes)}</td>
+    </tr>
+  `).join('');
+}
+
+// Auto-login if key exists
+if (adminKey) loadData();
+</script>
+</body>
+</html>
