@@ -16,6 +16,13 @@
 import os, sys, json, argparse, shutil, subprocess
 import urllib.request, urllib.parse, urllib.error
 
+# Windows 控制台默认 GBK，Python 输出中文会乱码。强制 stdout/stderr 用 UTF-8。
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 BASE = os.environ.get("TEAM_API", "https://allsoft.asia/api/team")
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "

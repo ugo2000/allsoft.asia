@@ -11,6 +11,13 @@ import os, sys, json, time, socket, shutil, subprocess
 import urllib.request, urllib.parse, urllib.error
 from datetime import datetime
 
+# Windows 控制台默认 GBK，Python 输出中文会乱码。强制 stdout/stderr 用 UTF-8。
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MEM = os.path.join(ROOT, ".workbuddy", "memory")
 INBOX = os.path.join(MEM, "INBOX.md")
