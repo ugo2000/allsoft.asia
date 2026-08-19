@@ -1,83 +1,73 @@
 // Pages Function: /api/analytics
-// Proxies Cloudflare GraphQL Analytics API — public, no auth required
-
-const ZONE_ID = '952356e67f6c3c94dd3be17149902994';
+// 从 D1 访客表计算流量概览，不再依赖 Cloudflare GraphQL API token
 
 export async function onRequestGet(context) {
   const { env } = context;
 
-  const token = env.CF_ANALYTICS_TOKEN;
-  if (!token) {
-    return new Response(JSON.stringify({ error: 'token_not_set' }), {
+  if (!env.VISITORS_DB) {
+    return new Response(JSON.stringify({ error: 'db_not_bound' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
   }
 
-  // Build date range: last 30 days
-  const now = new Date();
-  const end = now.toISOString().slice(0, 10);
-  const start = new Date(now.getTime() - 30 * 86400000).toISOString().slice(0, 10);
-
-  const query = [
-    '{ viewer { zones(filter: {zoneTag: "' + ZONE_ID + '"}) {',
-    '  httpRequests1dGroups(limit: 30, filter: {date_geq: "' + start + '", date_leq: "' + end + '"}) {',
-    '    dimensions { date }',
-    '    sum { requests pageViews bytes }',
-    '    uniq { uniques }',
-    '  }',
-    '} } }'
-  ].join('');
-
   try {
-    const resp = await fetch('https://api.cloudflare.com/client/v4/graphql', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ query: query })
-    });
+    // 最近 30 天汇总
+    const summaryStmt = env.VISITORS_DB.prepare(
+      "SELECT COUNT(*) as pv, COUNT(DISTINCT ip) as uv FROM visitors WHERE created_at >= datetime('now', '-30 days')"
+    );
+    const summaryRow = await summaryStmt.first();
 
-    const data = await resp.json();
+    // 每日明细
+    const dailyStmt = env.VISITORS_DB.prepare(
+      "SELECT DATE(created_at) as date, COUNT(*) as pv, COUNT(DISTINCT ip) as uniq " +
+      "FROM visitors WHERE created_at >= datetime('now', '-30 days') " +
+      "GROUP BY DATE(created_at) ORDER BY date"
+    );
+    const dailyResult = await dailyStmt.all();
 
-    if (data.errors) {
-      return new Response(JSON.stringify({ error: 'graphql_error', details: data.errors }), {
-        status: 502,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
+    const totalPV = summaryRow.pv || 0;
+    const totalUniq = summaryRow.uv || 0;
+    const totalReq = totalPV; // D1 每条记录 = 一次页面访问
 
-    const groups = (data.data && data.data.viewer && data.data.viewer.zones && data.data.viewer.zones[0] && data.data.viewer.zones[0].httpRequests1dGroups) || [];
-
-    let totalPV = 0, totalReq = 0, totalUniq = 0, totalBytes = 0;
-    const daily = groups.map(function(g) {
+    const daily = (dailyResult.results || []).map(function(r) {
       return {
-        date: g.dimensions.date,
-        pv: g.sum.pageViews,
-        req: g.sum.requests,
-        uniq: g.uniq.uniques,
-        bytes: g.sum.bytes
+        date: r.date,
+        pv: r.pv,
+        req: r.pv,
+        uniq: r.uniq,
+        bytes: 0
       };
     });
 
-    for (const d of daily) {
-      totalPV += d.pv;
-      totalReq += d.req;
-      totalUniq += d.uniq;
-      totalBytes += d.bytes;
+    // 填充没有访客的日期（让柱状图连续）
+    const dateSet = {};
+    daily.forEach(function(d) { dateSet[d.date] = d; });
+    const filled = [];
+    const now = new Date();
+    for (let i = 29; i >= 0; i--) {
+      const dt = new Date(now.getTime() - i * 86400000);
+      const ds = dt.toISOString().slice(0, 10);
+      if (dateSet[ds]) {
+        filled.push(dateSet[ds]);
+      } else {
+        filled.push({ date: ds, pv: 0, req: 0, uniq: 0, bytes: 0 });
+      }
     }
 
     const result = {
-      range: { start: start, end: end },
+      range: {
+        start: filled.length > 0 ? filled[0].date : '',
+        end: filled.length > 0 ? filled[filled.length - 1].date : ''
+      },
       summary: {
         pageViews: totalPV,
         requests: totalReq,
         uniqueVisitors: totalUniq,
-        bandwidth: totalBytes,
+        bandwidth: 0,
         avgPvPerVisitor: totalUniq > 0 ? (totalPV / totalUniq).toFixed(1) : '0'
       },
-      daily: daily.sort(function(a, b) { return a.date < b.date ? -1 : 1; })
+      daily: filled
     };
 
     return new Response(JSON.stringify(result), {
@@ -88,7 +78,7 @@ export async function onRequestGet(context) {
       }
     });
   } catch (e) {
-    return new Response(JSON.stringify({ error: 'fetch_failed', message: e.message }), {
+    return new Response(JSON.stringify({ error: 'db_error', message: e.message }), {
       status: 502,
       headers: { 'Content-Type': 'application/json' }
     });

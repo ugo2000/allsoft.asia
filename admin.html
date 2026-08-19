@@ -179,7 +179,7 @@ async function loadTraffic() {
       '<div class="stat-card"><div class="num">' + fmt(s.uniqueVisitors) + '</div><div class="label">独立访客</div><div class="sub">30天</div></div>',
       '<div class="stat-card"><div class="num">' + fmt(s.requests) + '</div><div class="label">总请求</div><div class="sub">30天</div></div>',
       '<div class="stat-card"><div class="num">' + s.avgPvPerVisitor + '</div><div class="label">人均浏览</div><div class="sub">PV/访客</div></div>',
-      '<div class="stat-card"><div class="num">' + fmt(s.bandwidth) + '</div><div class="label">流量消耗</div><div class="sub">30天</div></div>'
+      '<div class="stat-card"><div class="num">' + (s.bandwidth > 0 ? fmt(s.bandwidth) : '—') + '</div><div class="label">流量消耗</div><div class="sub">30天</div></div>'
     ].join('');
 
     const daily = data.daily.filter(function(d) { return d.pv > 0; });
@@ -190,7 +190,7 @@ async function loadTraffic() {
     }).join('');
 
     document.getElementById('trafficTable').innerHTML = data.daily.slice().reverse().map(function(d) {
-      return '<tr><td>' + d.date + '</td><td>' + d.pv + '</td><td>' + fmt(d.req) + '</td><td>' + d.uniq + '</td><td>' + fmt(d.bytes) + '</td></tr>';
+      return '<tr><td>' + d.date + '</td><td>' + d.pv + '</td><td>' + fmt(d.req) + '</td><td>' + d.uniq + '</td><td>' + (d.bytes > 0 ? fmt(d.bytes) : '—') + '</td></tr>';
     }).join('');
   } catch (e) {
     document.getElementById('loading1').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p>';
