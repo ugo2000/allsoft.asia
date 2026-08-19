@@ -17,11 +17,22 @@
 .stat-card .sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
 .section { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 20px 0; }
 .section h3 { margin: 0 0 16px; font-size: 16px; color: #1e293b; }
-.bar-chart { display: flex; align-items: flex-end; gap: 3px; height: 200px; padding: 0 8px; }
-.bar { flex: 1; min-width: 0; background: linear-gradient(180deg, #3b82f6, #2563eb); border-radius: 4px 4px 0 0; position: relative; cursor: pointer; transition: opacity .2s; min-height: 2px; }
-.bar:hover { opacity: 0.8; }
-.bar:hover .bar-tip { display: block; }
-.bar-tip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #1e293b; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; z-index: 10; margin-bottom: 4px; }
+.line-chart { width: 100%; height: 220px; display: block; }
+.line-chart .axis { stroke: #e2e8f0; stroke-width: 1; }
+html.dark .line-chart .axis { stroke: #334155; }
+.line-chart .grid { stroke: #f1f5f9; stroke-width: 1; stroke-dasharray: 3 3; }
+html.dark .line-chart .grid { stroke: #1e293b; }
+.line-chart .area { fill: #2563eb; fill-opacity: 0.12; }
+html.dark .line-chart .area { fill-opacity: 0.18; }
+.line-chart .line { fill: none; stroke: #2563eb; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+html.dark .line-chart .line { stroke: #60a5fa; }
+.line-chart .pt { fill: #2563eb; stroke: #fff; stroke-width: 1.5; cursor: pointer; transition: r .15s; }
+html.dark .line-chart .pt { fill: #60a5fa; stroke: #0f172a; }
+.line-chart .pt:hover { r: 5.5; }
+.line-chart .pt-zero { fill: #94a3b8; stroke: #fff; }
+html.dark .line-chart .pt-zero { fill: #64748b; stroke: #0f172a; }
+.line-chart .lbl { font-size: 10px; fill: #94a3b8; font-family: var(--mono); }
+html.dark .line-chart .lbl { fill: #64748b; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th { text-align: left; padding: 8px 10px; color: #64748b; font-weight: 600; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
 td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; }
@@ -95,7 +106,7 @@ html.dark .tabs { border-bottom-color: var(--c-border); }
       <div class="stats-grid" id="statsGrid"></div>
       <div class="section">
         <h3>每日页面浏览量 (PV)</h3>
-        <div class="bar-chart" id="barChart"></div>
+        <svg id="barChart" class="line-chart" preserveAspectRatio="none"></svg>
       </div>
       <div class="section">
         <h3>每日明细</h3>
@@ -190,12 +201,22 @@ async function loadTraffic() {
       '<div class="stat-card"><div class="num">' + (s.bandwidth > 0 ? fmt(s.bandwidth) : '—') + '</div><div class="label">流量消耗</div><div class="sub">30天</div></div>'
     ].join('');
 
-    const daily = data.daily.filter(function(d) { return d.pv > 0; });
-    const maxPV = Math.max.apply(null, daily.map(function(d) { return d.pv; }).concat([1]));
-    document.getElementById('barChart').innerHTML = daily.map(function(d) {
-      const h = (d.pv / maxPV * 100).toFixed(1);
-      return '<div class="bar" style="height:' + h + '%;"><span class="bar-tip">' + fmtDate(d.date) + ': ' + d.pv + ' PV / ' + d.uniq + ' UV</span></div>';
-    }).join('');
+    const allDaily = data.daily;
+    const maxPV = Math.max.apply(null, allDaily.map(function(d){ return d.pv; }).concat([1]));
+    const W=1000, H=220, PL=40, PR=10, PT=18, PB=26;
+    const iW=W-PL-PR, iH=H-PT-PB;
+    const step = allDaily.length>1 ? iW/(allDaily.length-1) : 0;
+    let path='', pts='', grid='';
+    for (var k=0;k<=4;k++){ var gy=PT+iH*k/4; grid+='<line class="grid" x1="'+PL+'" y1="'+gy.toFixed(1)+'" x2="'+(W-PR)+'" y2="'+gy.toFixed(1)+'"/><text class="lbl" x="2" y="'+(gy+3).toFixed(1)+'">'+Math.round(maxPV*(1-k/4))+'</text>'; }
+    allDaily.forEach(function(d,i){
+      var x=PL+i*step, y=PT+iH-(d.pv/maxPV)*iH;
+      path += (i===0?'M':'L') + x.toFixed(1) + ',' + y.toFixed(1);
+      pts += '<circle class="pt'+(d.pv===0?' pt-zero':'')+'" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="3"><title>'+d.date+': '+d.pv+' PV / '+d.uniq+' UV</title></circle>';
+      if (i % 5 === 0 || i === allDaily.length-1) grid += '<text class="lbl" x="'+(x-14).toFixed(1)+'" y="'+(H-6)+'">'+d.date.slice(5)+'</text>';
+    });
+    var lastX = PL + (allDaily.length-1)*step;
+    var areaPath = path + ' L' + lastX.toFixed(1) + ',' + (PT+iH) + ' L' + PL + ',' + (PT+iH) + ' Z';
+    document.getElementById('barChart').innerHTML = '<path class="area" d="'+areaPath+'"/><path class="line" d="'+path+'"/>'+grid+pts;
 
     document.getElementById('trafficTable').innerHTML = data.daily.slice().reverse().map(function(d) {
       return '<tr><td>' + d.date + '</td><td>' + d.pv + '</td><td>' + fmt(d.req) + '</td><td>' + d.uniq + '</td><td>' + (d.bytes > 0 ? fmt(d.bytes) : '—') + '</td></tr>';
