@@ -4,43 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>后台数据 - AllSoft.asia</title>
+<title>网站数据 - AllSoft.asia</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='70' font-size='52' font-weight='bold' text-anchor='middle' fill='white'>A</text></svg>">
 <link rel="stylesheet" href="/css/style.css">
 <style>
-.admin-wrap { max-width: 960px; margin: 0 auto; padding: 20px; }
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0; }
-.stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; transition: box-shadow .2s; }
+.data-wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 24px 0; }
+.stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; text-align: center; transition: box-shadow .2s; }
 .stat-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
-.stat-card .num { font-size: 32px; font-weight: 700; color: #2563eb; }
+.stat-card .num { font-size: 30px; font-weight: 700; color: #2563eb; }
 .stat-card .label { font-size: 13px; color: #64748b; margin-top: 4px; }
 .stat-card .sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
-.chart-wrap { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 24px 0; }
-.chart-wrap h3 { margin: 0 0 16px; font-size: 16px; color: #1e293b; }
-#chartCanvas { width: 100%; height: 240px; }
-.table-wrap { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 24px 0; overflow-x: auto; }
-.table-wrap table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.table-wrap th { text-align: left; padding: 8px 12px; color: #64748b; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
-.table-wrap td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; }
-.table-wrap tr:hover td { background: #f8fafc; }
-.admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-.admin-header h1 { font-size: 24px; margin: 0; }
-.refresh-btn { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; }
-.refresh-btn:hover { background: #1d4ed8; }
-.login-box { max-width: 360px; margin: 80px auto; text-align: center; }
-.login-box input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px; }
-.login-box button { width: 100%; padding: 12px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; }
-.login-box button:hover { background: #1d4ed8; }
-.loading { text-align: center; padding: 40px; color: #94a3b8; }
-.err-msg { color: #dc2626; font-size: 14px; text-align: center; padding: 20px; }
-.bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 200px; padding: 0 8px; }
+.section { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 20px 0; }
+.section h3 { margin: 0 0 16px; font-size: 16px; color: #1e293b; }
+.bar-chart { display: flex; align-items: flex-end; gap: 3px; height: 200px; padding: 0 8px; }
 .bar { flex: 1; min-width: 0; background: linear-gradient(180deg, #3b82f6, #2563eb); border-radius: 4px 4px 0 0; position: relative; cursor: pointer; transition: opacity .2s; min-height: 2px; }
 .bar:hover { opacity: 0.8; }
 .bar:hover .bar-tip { display: block; }
 .bar-tip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #1e293b; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; z-index: 10; margin-bottom: 4px; }
-.external-links { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
-.external-links a { font-size: 13px; color: #2563eb; text-decoration: none; padding: 6px 12px; border: 1px solid #cbd5e1; border-radius: 6px; }
-.external-links a:hover { background: #f1f5f9; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 8px 10px; color: #64748b; font-weight: 600; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; }
+tr:hover td { background: #f8fafc; }
+.data-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.data-header h1 { font-size: 22px; margin: 0; }
+.refresh-btn { background: #2563eb; color: #fff; border: none; padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; }
+.refresh-btn:hover { background: #1d4ed8; }
+.loading { text-align: center; padding: 40px; color: #94a3b8; }
+.err-msg { color: #dc2626; font-size: 14px; text-align: center; padding: 20px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag-mobile { background: #dbeafe; color: #1d4ed8; }
+.tag-desktop { background: #dcfce7; color: #15803d; }
+.tag-tablet { background: #fef3c7; color: #b45309; }
+.flag { font-size: 11px; color: #64748b; }
+.breakdown-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.breakdown-item h4 { font-size: 13px; color: #64748b; margin: 0 0 8px; }
+.breakdown-item .row { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; }
+.breakdown-item .row .val { color: #2563eb; font-weight: 600; }
+.bar-fill { height: 6px; border-radius: 3px; background: #2563eb; margin-top: 2px; }
+.bar-track { height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden; }
+.live-dot { display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; margin-right: 6px; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
+.tab { padding: 10px 20px; cursor: pointer; font-size: 14px; color: #64748b; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.tab.active { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
+.tab:hover { color: #2563eb; }
 </style>
 </head>
 <body>
@@ -52,148 +60,215 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="/">首页</a></li>
         <li><a href="/products">软件集合</a></li>
-        <li><a href="/admin" class="active">后台数据</a></li>
+        <li><a href="/data" class="active">网站数据</a></li>
       </ul>
       <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
     </nav>
   </div>
 </header>
 
-<div class="admin-wrap">
+<div class="data-wrap">
 
-<!-- Login -->
-<div id="loginBox" class="login-box">
-  <h1 style="margin-bottom:8px;">后台数据</h1>
-  <p style="color:#64748b;font-size:14px;margin-bottom:20px;">输入访问密钥查看网站流量数据</p>
-  <input type="password" id="keyInput" placeholder="访问密钥" onkeydown="if(event.key==='Enter')doLogin()">
-  <button onclick="doLogin()">进入</button>
-  <p id="loginErr" class="err-msg" style="display:none;"></p>
-</div>
-
-<!-- Dashboard -->
-<div id="dashboard" style="display:none;">
-
-  <div class="admin-header">
-    <h1>网站流量数据</h1>
-    <button class="refresh-btn" onclick="loadData()">刷新</button>
+  <div class="data-header">
+    <h1>网站数据看板</h1>
+    <button class="refresh-btn" onclick="loadAll()">刷新</button>
   </div>
-  <p style="color:#64748b;font-size:13px;">数据来源：Cloudflare 边缘网络 · 近 30 天</p>
+  <p style="color:#64748b;font-size:13px;margin-bottom:4px;">实时公开数据 · 访客来源、设备、浏览量一目了然</p>
 
-  <div class="external-links">
-    <a href="https://dash.cloudflare.com/40c232b7d826cb8cef7de637e8dc96ed/allsoft.asia/analytics" target="_blank">Cloudflare 分析 →</a>
-    <a href="https://dash.cloudflare.com/40c232b7d826cb8cef7de637e8dc96ed/pages/views/allsoft-asia" target="_blank">Pages 部署 →</a>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('traffic')">流量概览</div>
+    <div class="tab" onclick="switchTab('visitors')">访客记录</div>
+    <div class="tab" onclick="switchTab('breakdown')">分布统计</div>
   </div>
 
-  <div id="loading" class="loading">加载中...</div>
-
-  <div id="content" style="display:none;">
-    <div class="stats-grid" id="statsGrid"></div>
-    <div class="chart-wrap">
-      <h3>每日页面浏览量 (PV)</h3>
-      <div class="bar-chart" id="barChart"></div>
-    </div>
-    <div class="table-wrap">
-      <h3 style="margin:0 0 16px;font-size:16px;color:#1e293b;">每日明细</h3>
-      <table>
-        <thead>
-          <tr><th>日期</th><th>页面浏览</th><th>总请求</th><th>独立访客</th><th>流量</th></tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
+  <div id="tab-traffic">
+    <div id="loading1" class="loading">加载流量数据...</div>
+    <div id="trafficContent" style="display:none;">
+      <div class="stats-grid" id="statsGrid"></div>
+      <div class="section">
+        <h3>每日页面浏览量 (PV)</h3>
+        <div class="bar-chart" id="barChart"></div>
+      </div>
+      <div class="section">
+        <h3>每日明细</h3>
+        <table>
+          <thead><tr><th>日期</th><th>页面浏览</th><th>总请求</th><th>独立访客</th><th>流量</th></tr></thead>
+          <tbody id="trafficTable"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-</div>
+  <div id="tab-visitors" style="display:none;">
+    <div style="margin-bottom:12px;">
+      <span class="live-dot"></span>
+      <span style="font-size:13px;color:#64748b;">实时访客记录（最近 100 条）</span>
+    </div>
+    <div id="loading2" class="loading">加载访客记录...</div>
+    <div id="visitorsContent" style="display:none;">
+      <div class="section" style="padding:0;overflow:hidden;">
+        <div style="overflow-x:auto;">
+          <table>
+            <thead><tr><th>时间</th><th>IP</th><th>国家/地区</th><th>城市</th><th>设备</th><th>浏览器</th><th>系统</th><th>访问页面</th><th>来源</th></tr></thead>
+            <tbody id="visitorsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-breakdown" style="display:none;">
+    <div id="loading3" class="loading">加载分布数据...</div>
+    <div id="breakdownContent" style="display:none;">
+      <div class="breakdown-grid" id="breakdownGrid"></div>
+    </div>
+  </div>
 
 </div>
 
 <script>
-const API = '/api/analytics';
-let adminKey = sessionStorage.getItem('adminKey') || '';
-
 function fmt(n) {
   if (n >= 1e9) return (n/1e9).toFixed(1) + 'G';
   if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
   if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
   return String(n);
 }
-
 function fmtDate(d) {
   const dt = new Date(d + 'T00:00:00');
   return (dt.getMonth()+1) + '/' + dt.getDate();
 }
-
-function doLogin() {
-  const val = document.getElementById('keyInput').value.trim();
-  if (!val) return;
-  adminKey = val;
-  document.getElementById('loginErr').style.display = 'none';
-  loadData();
+function fmtTime(t) {
+  if (!t) return '';
+  // t is UTC from D1, convert to local
+  const dt = new Date(t + 'Z');
+  return dt.toLocaleString('zh-CN', { month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' });
+}
+function deviceTag(d) {
+  const cls = d === 'Mobile' ? 'tag-mobile' : d === 'Tablet' ? 'tag-tablet' : 'tag-desktop';
+  return '<span class="tag ' + cls + '">' + d + '</span>';
+}
+function countryFlag(c) {
+  if (!c || c === 'Unknown') return '<span class="flag">未知</span>';
+  return c;
+}
+function pageShort(p) {
+  if (!p) return '/';
+  if (p.length > 40) return '...' + p.slice(-38);
+  return p;
 }
 
-async function loadData() {
-  document.getElementById('loginBox').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('content').style.display = 'none';
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  event.target.classList.add('active');
+  ['traffic','visitors','breakdown'].forEach(function(t) {
+    document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+  });
+}
 
+async function loadTraffic() {
   try {
-    const resp = await fetch(API + '?key=' + encodeURIComponent(adminKey));
-    if (resp.status === 401) {
-      sessionStorage.removeItem('adminKey');
-      adminKey = '';
-      document.getElementById('loginBox').style.display = 'block';
-      document.getElementById('dashboard').style.display = 'none';
-      document.getElementById('loginErr').textContent = '密钥错误，请重试';
-      document.getElementById('loginErr').style.display = 'block';
-      return;
-    }
+    const resp = await fetch('/api/analytics');
     const data = await resp.json();
     if (data.error) throw new Error(data.error);
+    document.getElementById('loading1').style.display = 'none';
+    document.getElementById('trafficContent').style.display = 'block';
 
-    sessionStorage.setItem('adminKey', adminKey);
-    renderData(data);
+    const s = data.summary;
+    document.getElementById('statsGrid').innerHTML = [
+      '<div class="stat-card"><div class="num">' + fmt(s.pageViews) + '</div><div class="label">页面浏览量</div><div class="sub">30天</div></div>',
+      '<div class="stat-card"><div class="num">' + fmt(s.uniqueVisitors) + '</div><div class="label">独立访客</div><div class="sub">30天</div></div>',
+      '<div class="stat-card"><div class="num">' + fmt(s.requests) + '</div><div class="label">总请求</div><div class="sub">30天</div></div>',
+      '<div class="stat-card"><div class="num">' + s.avgPvPerVisitor + '</div><div class="label">人均浏览</div><div class="sub">PV/访客</div></div>',
+      '<div class="stat-card"><div class="num">' + fmt(s.bandwidth) + '</div><div class="label">流量消耗</div><div class="sub">30天</div></div>'
+    ].join('');
+
+    const daily = data.daily.filter(function(d) { return d.pv > 0; });
+    const maxPV = Math.max.apply(null, daily.map(function(d) { return d.pv; }).concat([1]));
+    document.getElementById('barChart').innerHTML = daily.map(function(d) {
+      const h = (d.pv / maxPV * 100).toFixed(1);
+      return '<div class="bar" style="height:' + h + '%;"><span class="bar-tip">' + fmtDate(d.date) + ': ' + d.pv + ' PV / ' + d.uniq + ' UV</span></div>';
+    }).join('');
+
+    document.getElementById('trafficTable').innerHTML = data.daily.slice().reverse().map(function(d) {
+      return '<tr><td>' + d.date + '</td><td>' + d.pv + '</td><td>' + fmt(d.req) + '</td><td>' + d.uniq + '</td><td>' + fmt(d.bytes) + '</td></tr>';
+    }).join('');
   } catch (e) {
-    document.getElementById('loading').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p><p style="text-align:center;font-size:13px;color:#94a3b8;">如果刚部署，密钥可能需要几分钟生效。</p>';
+    document.getElementById('loading1').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p>';
   }
 }
 
-function renderData(data) {
-  const s = data.summary;
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('content').style.display = 'block';
+async function loadVisitors() {
+  try {
+    const resp = await fetch('/api/visitors?limit=100');
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+    document.getElementById('loading2').style.display = 'none';
+    document.getElementById('visitorsContent').style.display = 'block';
 
-  // Stats cards
-  document.getElementById('statsGrid').innerHTML = `
-    <div class="stat-card"><div class="num">${fmt(s.pageViews)}</div><div class="label">页面浏览量</div><div class="sub">30天总计</div></div>
-    <div class="stat-card"><div class="num">${fmt(s.uniqueVisitors)}</div><div class="label">独立访客</div><div class="sub">30天总计</div></div>
-    <div class="stat-card"><div class="num">${fmt(s.requests)}</div><div class="label">总请求</div><div class="sub">30天总计</div></div>
-    <div class="stat-card"><div class="num">${s.avgPvPerVisitor}</div><div class="label">人均浏览</div><div class="sub">PV / 访客</div></div>
-    <div class="stat-card"><div class="num">${fmt(s.bandwidth)}</div><div class="label">流量消耗</div><div class="sub">30天总计 (bytes)</div></div>
-  `;
+    if (data.visitors.length === 0) {
+      document.getElementById('visitorsTable').innerHTML = '<tr><td colspan="9" style="text-align:center;padding:30px;color:#94a3b8;">暂无访客记录，访问其他页面后刷新即可看到</td></tr>';
+      return;
+    }
 
-  // Bar chart
-  const daily = data.daily.filter(d => d.pv > 0);
-  const maxPV = Math.max(...daily.map(d => d.pv), 1);
-  document.getElementById('barChart').innerHTML = daily.map(d => {
-    const h = (d.pv / maxPV * 100).toFixed(1);
-    return `<div class="bar" style="height:${h}%;"><span class="bar-tip">${fmtDate(d.date)}: ${d.pv} PV / ${d.uniq} UV</span></div>`;
-  }).join('');
-
-  // Table
-  document.getElementById('tableBody').innerHTML = [...data.daily].reverse().map(d => `
-    <tr>
-      <td>${d.date}</td>
-      <td>${d.pv}</td>
-      <td>${fmt(d.req)}</td>
-      <td>${d.uniq}</td>
-      <td>${fmt(d.bytes)}</td>
-    </tr>
-  `).join('');
+    document.getElementById('visitorsTable').innerHTML = data.visitors.map(function(v) {
+      return '<tr>' +
+        '<td style="white-space:nowrap;">' + fmtTime(v.time) + '</td>' +
+        '<td>' + v.ip + '</td>' +
+        '<td>' + countryFlag(v.country) + '</td>' +
+        '<td>' + (v.city || '-') + '</td>' +
+        '<td>' + deviceTag(v.device) + '</td>' +
+        '<td>' + v.browser + '</td>' +
+        '<td>' + v.os + '</td>' +
+        '<td>' + pageShort(v.page) + '</td>' +
+        '<td>' + pageShort(v.referrer) + '</td>' +
+        '</tr>';
+    }).join('');
+  } catch (e) {
+    document.getElementById('loading2').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p>';
+  }
 }
 
-// Auto-login if key exists
-if (adminKey) loadData();
+async function loadBreakdown() {
+  try {
+    const resp = await fetch('/api/visitors?limit=500');
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+    document.getElementById('loading3').style.display = 'none';
+    document.getElementById('breakdownContent').style.display = 'block';
+
+    const s = data.stats;
+    const total = data.total || 1;
+    function renderBreakdown(title, obj) {
+      const entries = Object.entries(obj).sort(function(a,b) { return b[1] - a[1]; });
+      const rows = entries.map(function(e) {
+        const pct = (e[1] / total * 100).toFixed(1);
+        return '<div class="row"><span>' + e[0] + '</span><span class="val">' + e[1] + ' (' + pct + '%)</span></div>' +
+          '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%;"></div></div>';
+      }).join('');
+      return '<div class="breakdown-item section"><h4>' + title + '</h4>' + rows + '</div>';
+    }
+
+    document.getElementById('breakdownGrid').innerHTML = [
+      renderBreakdown('设备类型', s.device),
+      renderBreakdown('国家/地区', s.country),
+      renderBreakdown('浏览器', s.browser),
+      renderBreakdown('操作系统', s.os),
+      renderBreakdown('访问页面', s.page)
+    ].join('');
+  } catch (e) {
+    document.getElementById('loading3').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p>';
+  }
+}
+
+function loadAll() {
+  loadTraffic();
+  loadVisitors();
+  loadBreakdown();
+}
+
+loadAll();
+// Auto refresh every 60s
+setInterval(loadAll, 60000);
 </script>
 </body>
 </html>

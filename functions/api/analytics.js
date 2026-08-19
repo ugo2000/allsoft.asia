@@ -1,21 +1,10 @@
 // Pages Function: /api/analytics
-// Proxies Cloudflare GraphQL Analytics API for the admin dashboard
+// Proxies Cloudflare GraphQL Analytics API — public, no auth required
 
 const ZONE_ID = '952356e67f6c3c94dd3be17149902994';
 
-export async function onRequest(context) {
-  const { env, request } = context;
-
-  // Access control
-  const url = new URL(request.url);
-  const key = url.searchParams.get('key') || request.headers.get('X-Admin-Key') || '';
-  const expectedKey = env.ADMIN_KEY || 'allsoft2026';
-  if (key !== expectedKey) {
-    return new Response(JSON.stringify({ error: 'unauthorized' }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
+export async function onRequestGet(context) {
+  const { env } = context;
 
   const token = env.CF_ANALYTICS_TOKEN;
   if (!token) {

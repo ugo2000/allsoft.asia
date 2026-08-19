@@ -45,6 +45,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Visitor tracking — fire on every page load
+  if (!window.__tracked) {
+    window.__tracked = true;
+    try {
+      fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          page: location.pathname + location.search,
+          referrer: document.referrer
+        }),
+        keepalive: true
+      }).catch(function() {});
+    } catch (e) {}
+  }
+
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {

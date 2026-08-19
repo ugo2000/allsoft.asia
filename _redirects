@@ -5,3 +5,4 @@
 
 # SPA fallback not needed (static multi-page site)
 # 404 handled by 404.html
+/data  /admin  301
