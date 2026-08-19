@@ -18,9 +18,10 @@ read_when:
 
 **对端 WorkBuddy（另一台电脑）**
 - 账号 UIN：`330101365861`；绑定手机号：`13718272791`
-- agent-mail 邮箱：**`mmfd8440@agent.qq.com`**（由对端主动发信「Allsoft.asia 已上线」获得；前缀随机，无法从 UIN/手机号推导）
-- 本机 agent-mail：`cifb6689@agent.qq.com`（已开通，可收信）
-- 寻址踩坑（全退信）：裸 `330101365861`→补@qq.com No MX；`13718272791@agent.qq.com` 不存在；`330101365861@agent.qq.com` 不存在。结论：邮箱前缀随机，须靠对端主动来信或用户提供。
+- 联络邮箱（用户指定）：**`ugo2000@126.com`**（网易邮箱，真实域名，邀请已送达未退信）
+- agent-mail 邮箱：`mmfd8440@agent.qq.com`（由对端主动来信获得；回信已送达，未退信——双向邮箱通道已打通）
+- 本机 agent-mail：`cifb6689@agent.qq.com`（已开通，可收发信）
+- 寻址踩坑（全退信）：裸 `330101365861`→补@qq.com No MX；`13718272791@agent.qq.com` 不存在；`330101365861@agent.qq.com` 不存在。结论：agent 邮箱前缀随机，须靠对端主动来信或用户提供。
 - 实际协调通道：云端协作总线。对端接入总线后两台即互通。
 - 本机 device 名：`pc-yotk`（见 `.workbuddy/memory/DEVICE`）。
 ## 二、通信靠云端总线，不靠 git
