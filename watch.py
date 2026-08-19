@@ -52,18 +52,18 @@ def _call_curl(method, url, payload):
     args = [CURL, "-s", "--ssl-no-revoke", "--connect-timeout", "10",
             "-A", UA, "-H", "Content-Type: application/json", "-X", method, url]
     if payload is not None:
-        args += ["-d", json.dumps(payload)]
+        args += ["-d", json.dumps(payload, ensure_ascii=True)]
     out = subprocess.check_output(args, timeout=25)
-    return json.loads(out.decode())
+    return json.loads(out.decode("utf-8"))
 
 
 def _call_urllib(method, url, payload):
-    data = json.dumps(payload).encode() if payload else None
+    data = json.dumps(payload, ensure_ascii=True).encode() if payload else None
     req = urllib.request.Request(url, data=data, method=method, headers={
         "Content-Type": "application/json", "User-Agent": UA, "Accept": "application/json",
     })
     with urllib.request.urlopen(req, timeout=15) as r:
-        return json.loads(r.read().decode())
+        return json.loads(r.read().decode("utf-8"))
 
 
 def call(method, params=None, payload=None):

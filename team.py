@@ -40,7 +40,7 @@ def call(method, params=None, payload=None):
         args = [CURL, "-s", "--ssl-no-revoke", "--connect-timeout", "10",
                 "-A", UA, "-H", "Content-Type: application/json", "-X", method, url]
         if payload is not None:
-            args += ["-d", json.dumps(payload, ensure_ascii=False)]
+            args += ["-d", json.dumps(payload)]
         try:
             out = subprocess.check_output(args, timeout=25)
             return json.loads(out.decode("utf-8"))
