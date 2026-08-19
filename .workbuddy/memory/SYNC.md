@@ -18,11 +18,16 @@ read_when:
 
 **对端 WorkBuddy（另一台电脑）**
 - 账号 UIN：`330101365861`；绑定手机号：`13718272791`
-- agent-mail 邮箱：`13718272791@agent.qq.com`（手机号作前缀 + `agent.qq.com` 域）
-- 直接联系通道：智能体邮箱（agent-mail）**已开通**，本机地址 `cifb6689@agent.qq.com`
-- ⚠️ 寻址坑：收件人**必须带完整域名**。裸 UIN `330101365861` 会被系统自动补全成 `330101365861@qq.com`（默认域名 qq.com），导致「No MX Record」投递失败。正确写法是用 `13718272791@agent.qq.com`。
-- 已向 `13718272791@agent.qq.com` 发送接入邀请邮件且对端已读（2026-08-19）。
-- 实际协调通道：云端协作总线。对端接入总线后两台即互通，无需人工传话。
+- agent-mail 邮箱：**未知（待获取）**。试过以下地址**全部退信**：
+  - `330101365861` → 系统自动补全 `330101365861@qq.com` → No MX Record
+  - `13718272791@agent.qq.com` → mailbox unavailable（不存在）
+  - `330101365861@agent.qq.com` → mailbox unavailable（不存在）
+  - 结论：agent 邮箱前缀是随机串（如本机 `cifb6689`），**无法从 UIN/手机号推导**，必须由用户提供对端真实地址。
+- 本机 agent-mail：`cifb6689@agent.qq.com`（已开通，可收信）
+- 获取对端地址的两种方式：
+  1. 用户在对端 WorkBuddy 看「Agent Mail 接入成功」邮件，把里面地址（形如 `xxxx@agent.qq.com`）发给我；
+  2. 或让用户在对端说一句「给 `cifb6689@agent.qq.com` 发信说已上线」，对端发来后本机自动接应。
+- 实际协调通道：云端协作总线。对端接入总线后两台即互通。
 - 本机 device 名：`pc-yotk`（见 `.workbuddy/memory/DEVICE`）。
 
 ## 二、通信靠云端总线，不靠 git
