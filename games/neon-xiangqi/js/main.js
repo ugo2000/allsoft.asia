@@ -4,6 +4,8 @@
 (function () {
   'use strict';
 
+  const T = (k, zh) => (window.AllSoftI18n ? AllSoftI18n.t(k, zh) : zh);
+
   const XQ = window.XQ;
   const AI = window.AI;
   const Audio3D = window.GameAudio;
@@ -138,8 +140,8 @@
     ctx.fillText('漢 界', px(6), (py(4) + py(5)) / 2 - 12);
     ctx.fillStyle = 'rgba(33,230,255,0.20)';
     ctx.font = '10px Orbitron, sans-serif';
-    ctx.fillText('CHU RIVER', px(2), (py(4) + py(5)) / 2 + 12);
-    ctx.fillText('HAN FRONTIER', px(6), (py(4) + py(5)) / 2 + 12);
+    ctx.fillText(T('xq.chuRiver', '楚河'), px(2), (py(4) + py(5)) / 2 + 12);
+    ctx.fillText(T('xq.hanFrontier', '汉界'), px(6), (py(4) + py(5)) / 2 + 12);
     ctx.restore();
   }
 
@@ -499,12 +501,12 @@
     turnDot.className = 'turn-dot ' + (isRed ? 'red' : 'blue');
     let label;
     if (state.thinking) {
-      label = state.turn === 'b' ? 'BLUE CORE is thinking…' : 'Thinking…';
+      label = state.turn === 'b' ? T('xq.blueThinking', '蓝方核心思考中…') : T('xq.thinking', '思考中…');
     } else if (state.mode === 'ai') {
-      label = (state.turn === state.humanSide ? 'YOUR MOVE' : 'BLUE CORE')
+      label = (state.turn === state.humanSide ? T('xq.yourMove', '轮到你') : 'BLUE CORE')
         + (isRed ? ' (RED)' : ' (BLUE)');
     } else {
-      label = isRed ? 'RED CORE to move' : 'BLUE CORE to move';
+      label = isRed ? T('xq.turnRed', '红方走棋') : T('xq.turnBlue', '蓝方走棋');
     }
     turnText.textContent = label;
   }
@@ -512,11 +514,11 @@
   function showBanner(winner) {
     let big, sub, cls;
     if (state.mode === 'ai') {
-      if (winner === state.humanSide) { big = 'VICTORY'; sub = 'You defeated the Blue Core'; cls = 'win'; }
-      else { big = 'DEFEAT'; sub = 'The Blue Core prevailed'; cls = 'lose'; }
+      if (winner === state.humanSide) { big = T('xq.victory', '胜利'); sub = T('xq.youWon', '你击败了蓝方核心'); cls = 'win'; }
+      else { big = T('xq.defeat', '失败'); sub = T('xq.bluePrevailed', '蓝方核心获胜'); cls = 'lose'; }
     } else {
-      big = winner === 'r' ? 'RED WINS' : 'BLUE WINS';
-      sub = 'Checkmate / no legal moves';
+      big = winner === 'r' ? T('xq.redWins', '红方获胜') : T('xq.blueWins', '蓝方获胜');
+      sub = T('xq.checkmate', '将死 / 无子可走');
       cls = winner === 'r' ? 'win' : 'lose';
     }
     bannerBig.textContent = big;
@@ -554,7 +556,7 @@
   soundBtn.addEventListener('click', () => {
     state.soundOn = !state.soundOn;
     Audio3D.setEnabled(state.soundOn);
-    soundBtn.textContent = state.soundOn ? 'SOUND: ON' : 'SOUND: OFF';
+    soundBtn.textContent = state.soundOn ? T('xq.soundOn', '音效：开') : T('xq.soundOff', '音效：关');
     soundBtn.classList.toggle('active', state.soundOn);
     // Sound off silences everything; sound on resumes music if it was enabled.
     if (!state.soundOn) Audio3D.stopMusic();
@@ -569,14 +571,14 @@
       if (!state.soundOn) { // music needs sound on to be audible
         state.soundOn = true;
         Audio3D.setEnabled(true);
-        soundBtn.textContent = 'SOUND: ON';
+        soundBtn.textContent = T('xq.soundOn', '音效：开');
         soundBtn.classList.add('active');
       }
       Audio3D.startMusic();
     } else {
       Audio3D.stopMusic();
     }
-    musicBtn.textContent = state.musicOn ? 'MUSIC: ON' : 'MUSIC: OFF';
+    musicBtn.textContent = state.musicOn ? T('xq.musicOn', '音乐：开') : T('xq.musicOff', '音乐：关');
     musicBtn.classList.toggle('active', state.musicOn);
   });
 
@@ -595,7 +597,7 @@
   });
   function syncFullscreenBtn() {
     const on = !!(document.fullscreenElement || document.webkitFullscreenElement);
-    fullBtn.textContent = on ? 'EXIT FULL' : 'FULLSCREEN';
+    fullBtn.textContent = on ? T('xq.exitFull', '退出全屏') : T('xq.fullscreen', '全屏');
     fullBtn.classList.toggle('active', on);
   }
   document.addEventListener('fullscreenchange', syncFullscreenBtn);
@@ -636,9 +638,9 @@
   function renderCapturedTrays() {
     const top = document.getElementById('capturedTop');
     const bot = document.getElementById('capturedBottom');
-    if (top) top.innerHTML = '<span class="tray-label">BLUE CAPTURES</span>'
+    if (top) top.innerHTML = '<span class="tray-label">'+T('xq.blueCaptures', '蓝方吃子')+'</span>'
       + (state.capturedBlack || []).map(chipHTML).join('');
-    if (bot) bot.innerHTML = '<span class="tray-label">RED CAPTURES</span>'
+    if (bot) bot.innerHTML = '<span class="tray-label">'+T('xq.redCaptures', '红方吃子')+'</span>'
       + (state.capturedRed || []).map(chipHTML).join('');
   }
 
@@ -678,4 +680,13 @@
   renderCapturedTrays();
   // start ambient after first interaction (handled in pointerdown / sound toggle)
   soundBtn.addEventListener('click', () => { if (state.soundOn) Audio3D.startAmbient(); });
+
+  // 语言切换后刷新非逐帧文本（状态栏 / 吃子区 / 全屏按钮）
+  window.addEventListener('i18n:change', function () {
+    try {
+      updateStatusUI();
+      renderCapturedTrays();
+      syncFullscreenBtn();
+    } catch (e) {}
+  });
 })();

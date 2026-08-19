@@ -52,63 +52,66 @@
 </style>
 </head>
 <body>
+<a href="/" data-i18n="st.back" style="position:fixed;top:12px;left:12px;z-index:9999;padding:8px 14px;background:rgba(5,5,15,.82);color:#00ffe1;border:1px solid #00ffe1;border-radius:6px;font:600 13px/1 'Courier New',monospace;text-decoration:none;letter-spacing:2px;backdrop-filter:blur(6px);">← 返回 AllSoft.asia</a>
+<a href="javascript:void(0)" id="langSwitch" style="position:fixed;top:12px;right:12px;z-index:9999;padding:6px 12px;background:rgba(5,5,15,.82);color:#00ffe1;border:1px solid #00ffe1;border-radius:6px;font:700 13px/1 'Courier New',monospace;text-decoration:none;letter-spacing:2px;backdrop-filter:blur(6px);">EN</a>
 <div id="wrap">
   <canvas id="game"></canvas>
 </div>
 
 <div id="hud" class="hidden">
   <div class="hud-l">
-    <div><span class="label">HULL</span></div>
+    <div><span class="label" data-i18n="st.hull">HULL</span></div>
     <div class="bar hpbar"><div id="hpfill" style="width:100%"></div></div>
-    <div><span class="label">SHIELD</span></div>
+    <div><span class="label" data-i18n="st.shield">SHIELD</span></div>
     <div class="bar shbar"><div id="shfill" style="width:0%"></div></div>
   </div>
   <div class="hud-r">
     <div class="score" id="scoreEl">0</div>
-    <div class="wave">WAVE <span id="waveEl">1</span></div>
+    <div class="wave"><span data-i18n="st.wave">WAVE</span> <span id="waveEl">1</span></div>
     <div class="wpn" id="wpnEl">PULSE · LV1</div>
   </div>
 </div>
 
 <div id="menu" class="overlay">
   <div class="title">NEON STRIKE</div>
-  <div class="subtitle">霓 虹 突 袭</div>
-  <button class="btn" id="startBtn">ENGAGE</button>
-  <button class="btn mini" id="rankBtn">RANKINGS</button>
+  <div class="subtitle" data-i18n="st.subtitle">霓 虹 突 袭</div>
+  <button class="btn" id="startBtn" data-i18n="st.engage">ENGAGE</button>
+  <button class="btn mini" id="rankBtn" data-i18n="st.rankings">RANKINGS</button>
   <div class="controls">
-    <b>WASD / ↑↓←→</b> &nbsp; 移动<br>
-    <b>SPACE / J</b> &nbsp; 射击（按住连发）<br>
-    <b>SHIFT</b> &nbsp; 慢速精准 · 蓄力护盾<br>
-    <b>P</b> &nbsp; 暂停 &nbsp;|&nbsp; <b>1~6</b> 切换武器（6=BURST 蓄力释放）
+    <div data-i18n="st.ctl1"><b>WASD / ↑↓←→</b> &nbsp; 移动</div>
+    <div data-i18n="st.ctl2"><b>SPACE / J</b> &nbsp; 射击（按住连发）</div>
+    <div data-i18n="st.ctl3"><b>SHIFT</b> &nbsp; 慢速精准 · 蓄力护盾</div>
+    <div data-i18n="st.ctl4"><b>P</b> &nbsp; 暂停 &nbsp;|&nbsp; <b>1~6</b> 切换武器（6=BURST 蓄力释放）</div>
   </div>
 </div>
 
 <div id="pause" class="overlay hidden">
-  <div class="title" style="font-size:48px;">PAUSED</div>
-  <button class="btn" id="resumeBtn">RESUME</button>
-  <button class="btn sec" id="quitBtn">QUIT</button>
+  <div class="title" style="font-size:48px;" data-i18n="st.paused">PAUSED</div>
+  <button class="btn" id="resumeBtn" data-i18n="st.resume">RESUME</button>
+  <button class="btn sec" id="quitBtn" data-i18n="st.quit">QUIT</button>
 </div>
 
 <div id="gameover" class="overlay hidden">
-  <div class="title" style="font-size:52px;background:linear-gradient(90deg,#ff0055,#ff00d4);-webkit-background-clip:text;background-clip:text;">SYSTEM FAILURE</div>
-  <div class="gameover-stat">SCORE &nbsp; <span class="v" id="finalScore">0</span></div>
-  <div class="gameover-stat">WAVE REACHED &nbsp; <span class="v" id="finalWave">1</span></div>
+  <div class="title" style="font-size:52px;background:linear-gradient(90deg,#ff0055,#ff00d4);-webkit-background-clip:text;background-clip:text;" data-i18n="st.systemFailure">SYSTEM FAILURE</div>
+  <div class="gameover-stat"><span data-i18n="st.score">SCORE</span> &nbsp; <span class="v" id="finalScore">0</span></div>
+  <div class="gameover-stat"><span data-i18n="st.waveReached">WAVE REACHED</span> &nbsp; <span class="v" id="finalWave">1</span></div>
   <div class="rank-msg" id="rankMsg"></div>
   <div class="rank-panel" id="rankList"></div>
-  <button class="btn" id="retryBtn">RETRY</button>
+  <button class="btn" id="retryBtn" data-i18n="st.retry">RETRY</button>
 </div>
 
 <div id="rankings" class="overlay hidden">
-  <div class="title" style="font-size:44px;">RANKINGS</div>
+  <div class="title" style="font-size:44px;" data-i18n="st.rankTitle">RANKINGS</div>
   <div class="rank-panel" id="rankList2"></div>
-  <div class="rank-legend">武器图例 &nbsp; <span>P</span>脉冲 <span>S</span>散射 <span>H</span>追踪 <span>B</span>光束 <span>O</span>环绕</div>
-  <button class="btn mini" id="backBtn">BACK</button>
+  <div class="rank-legend" data-i18n="st.legend">武器图例 &nbsp; <span>P</span>脉冲 <span>S</span>散射 <span>H</span>追踪 <span>B</span>光束 <span>O</span>环绕</div>
+  <button class="btn mini" id="backBtn" data-i18n="st.back2">BACK</button>
 </div>
 
 <div id="flash" class="flash"></div>
-<div class="hint">点击画面获得键盘焦点 · CLICK TO FOCUS</div>
+<div class="hint" data-i18n="st.hint">点击画面获得键盘焦点 · CLICK TO FOCUS</div>
 
 <script>
+const T=(k,zh)=>(window.AllSoftI18n?AllSoftI18n.t(k,zh):zh);
 /* ========================================================================
    NEON STRIKE — 霓虹突袭  v2
    武器系统 / Boss 五阶段 / 本地排行榜
@@ -280,7 +283,7 @@ const Leaderboard = {
   },
   render(el, highlightIdx=-1){
     const list=this.load();
-    if(list.length===0){ el.innerHTML='<div class="rank-row"><span class="rank-meta">暂无记录 — 成为第一名！</span></div>'; return; }
+    if(list.length===0){ el.innerHTML='<div class="rank-row"><span class="rank-meta">'+T('st.noRecords','暂无记录 — 成为第一名！')+'</span></div>'; return; }
     let html='';
     list.forEach((r,i)=>{
       const me = (i===highlightIdx)?' me':'';
@@ -309,9 +312,9 @@ const Game = {
     document.getElementById('finalScore').textContent=this.score;
     document.getElementById('finalWave').textContent=this.wave;
     const rm=document.getElementById('rankMsg');
-    if(this.lastRank===1) rm.textContent='★ NEW RECORD ! ★';
-    else if(this.lastRank>0) rm.textContent='RANK #'+this.lastRank+' ENTERED';
-    else rm.textContent='NICE RUN — KEEP GOING';
+    if(this.lastRank===1) rm.textContent=T('st.newRecord','★ 新纪录！★');
+    else if(this.lastRank>0) rm.textContent=T('st.rankEntered','排行榜 #')+this.lastRank+' '+T('st.entered','已上榜');
+    else rm.textContent=T('st.niceRun','干得漂亮 — 继续加油');
     Leaderboard.render(document.getElementById('rankList'), this.lastRank-1);
     UI.show('gameover',true); UI.showHud(false);
   },
@@ -921,5 +924,7 @@ function fit(){
 }
 window.addEventListener('resize',fit); fit();
 </script>
+<script src="/js/lang/en.core.js"></script>
+<script src="/js/i18n.js"></script>
 </body>
 </html>

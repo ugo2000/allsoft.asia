@@ -89,11 +89,18 @@
     lang = lang === "en" ? "zh" : "en";
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
     apply();
+    // 通知页面（游戏/应用页的 JS 动态文本监听此事件刷新）
+    try { window.dispatchEvent(new CustomEvent("i18n:change", { detail: { lang: lang } })); } catch (e) {}
   }
 
   window.AllSoftI18n = {
     toggle: toggle,
     current: function () { return lang; },
+    isEn: function () { return lang === "en"; },
+    // JS 动态文本取词：en 时返回词典值（无则 fallback），zh 时返回 fallback（页面直出的中文原文）
+    t: function (key, fallback) {
+      return (lang === "en" && DICT[key]) ? DICT[key] : (fallback !== undefined ? fallback : "");
+    },
     apply: apply,
     dict: DICT
   };
