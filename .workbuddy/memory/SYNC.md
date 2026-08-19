@@ -31,6 +31,7 @@
 - 定位：一人软件工作室的自研软件集合站，ChatHub 是收录产品之一
 - 数据看板：/admin 公开，含流量概览 + 实时访客记录（D1 数据库 allsoft_visitors）
 - 已搭好 GitHub 同步层：memory/ 已放开 git 追踪，本文件即共享协作大脑
+- 当前机器已建 hourly 自动同步 automation（改动自动 commit+push）；另一台提供 AUTO_SETUP.bat / .sh 一键接入（见 CROSS_DEVICE_SETUP.md）
 
 ## 待办交接
 

@@ -2,6 +2,8 @@
 
 本文件说明如何让「另一台电脑（同一 GitHub 账号 ugo2000，同一人）」接入 allsoft.asia 项目的共享协作层。
 
+> **不想手动敲命令？** 直接双击仓库里的 `AUTO_SETUP.bat`（Windows）或运行 `AUTO_SETUP.sh`（macOS/Linux）即可一键克隆 + 设好身份，之后用 WorkBuddy 打开该文件夹就行。
+
 ## 原理
 
 两台电脑（同一 GitHub 账号 ugo2000）通过 GitHub 仓库 `ugo2000/allsoft.asia` 协同：
