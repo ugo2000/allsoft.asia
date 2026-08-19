@@ -141,7 +141,7 @@ def write_inbox(dev, all_msgs, open_tasks, peers):
 def main():
     dev = device_name()
     ch = "curl" if USE_CURL else "urllib"
-    print(f"[watch] 设备 {dev} 接入 {API}（{ch} 通道），每 {INTERVAL}s 轮询。Ctrl+C 退出。", flush=True)
+    print(f"[watch] device {dev} connected to {API} via {ch}, polling every {INTERVAL}s. Ctrl+C to stop.", flush=True)
     st = load_state()
     fails = 0
     while True:
@@ -155,19 +155,19 @@ def main():
                 st = merge_messages(st, msgs)
                 save_state(st)
                 for m in msgs:
-                    print(f"[{datetime.now():%H:%M:%S}] 收到 {m['from_device']}: {m['content']}", flush=True)
+                    print(f"[{datetime.now():%H:%M:%S}] recv from {m['from_device']} ({len(m['content'])} chars)", flush=True)
                 call("POST", payload={"action": "ack", "device": dev,
                                       "ids": [m["id"] for m in msgs]})
             write_inbox(dev, st["messages"], open_tasks, peers)
             fails = 0
         except KeyboardInterrupt:
-            print("\n[watch] 停止。")
+            print("\n[watch] stopped.")
             return
         except Exception as e:
             fails += 1
-            print(f"[watch] 第{fails}次失败: {e}")
+            print(f"[watch] failed {fails} times: {e}")
             if fails > 20:
-                print("[watch] 连续失败过多，退出。")
+                print("[watch] too many failures, exiting.")
                 return
         time.sleep(INTERVAL)
 

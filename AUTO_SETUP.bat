@@ -1,75 +1,75 @@
 ﻿@echo off
 chcp 65001 >nul
 setlocal enabledelayedexpansion
-title 接入 WorkBuddy 协作总线
+title WorkBuddy Team Bus - Setup
 
 echo ========================================
-echo   把这台电脑接入协作总线
-echo   接完两台就能同时干活了
+echo  Connect this PC to the WorkBuddy team bus
+echo  After setup, both PCs work at the same time
 echo ========================================
 echo.
 
-REM ---- 1. 定目录 ----
+REM 1. target dir
 set "TARGET=%USERPROFILE%\Allsoft.asia"
 if exist "D:\WB" set "TARGET=D:\WB\Allsoft.asia"
+echo [1/5] Target dir: %TARGET%
 
-echo [1/5] 项目目录: %TARGET%
-
-REM ---- 2. 拉代码 ----
+REM 2. clone or pull
 if exist "%TARGET%\.git" (
-    echo [2/5] 已存在，拉取最新...
+    echo [2/5] Exists, pulling latest...
     cd /d "%TARGET%"
-    git pull --rebase --autostash origin main
+    git pull --rebase --autostash origin main 2>>"%TARGET%\setup.log"
 ) else (
-    echo [2/5] 首次克隆...
-    git clone https://github.com/ugo2000/allsoft.asia.git "%TARGET%"
+    echo [2/5] First clone...
+    git clone https://github.com/ugo2000/allsoft.asia.git "%TARGET%" 2>>"%TARGET%\setup.log"
     cd /d "%TARGET%"
 )
 
 if errorlevel 1 (
     echo.
-    echo [!] git 失败了。八成是没装 git 或者网络不通。
-    echo     装 git: https://git-scm.com/download/win
+    echo [!] git failed. See setup.log for details.
+    echo     Need git installed and network access.
+    echo     Install git: https://git-scm.com/download/win
+    notepad "%TARGET%\SETUP_GUIDE.md"
     pause
     exit /b 1
 )
 
-REM ---- 3. git 身份 ----
-echo [3/5] 设置 git 身份...
+REM 3. git identity
+echo [3/5] Setting git identity...
 git config user.name "ugo2000"
 git config user.email "ugo2000@users.noreply.github.com"
 git config pull.rebase true
 
-REM ---- 4. 给本机起个名 ----
-echo [4/5] 给这台电脑起名...
+REM 4. device name
+echo [4/5] Naming this PC...
 set "DEVNAME="
 for /f "tokens=*" %%i in ('hostname') do set "DEVNAME=%%i"
 set "DEVNAME=%DEVNAME: =-%"
 if not exist "%TARGET%\.workbuddy\memory" mkdir "%TARGET%\.workbuddy\memory"
 if not exist "%TARGET%\.workbuddy\memory\devices" mkdir "%TARGET%\.workbuddy\memory\devices"
 > "%TARGET%\.workbuddy\memory\DEVICE" echo !DEVNAME!
-echo      本机代号: !DEVNAME!
+echo       Device name: !DEVNAME!
 
-REM ---- 5. 上线打个招呼 ----
-echo [5/5] 接入总线...
+REM 5. go online
+echo [5/5] Connecting to team bus...
 where python >nul 2>nul
 if errorlevel 1 (
-    echo      没找到 python，用 curl 上线
+    echo      python not found, using curl
     curl -s -X POST https://allsoft.asia/api/team -H "Content-Type: application/json" -d "{\"action\":\"heartbeat\",\"device\":\"!DEVNAME!\",\"label\":\"!DEVNAME!\",\"status\":\"online\"}" >nul
-    curl -s -X POST https://allsoft.asia/api/team -H "Content-Type: application/json" -d "{\"action\":\"send\",\"device\":\"!DEVNAME!\",\"to\":\"all\",\"content\":\"我上线了，可以派活\"}" >nul
+    curl -s -X POST https://allsoft.asia/api/team -H "Content-Type: application/json" -d "{\"action\":\"send\",\"device\":\"!DEVNAME!\",\"to\":\"all\",\"content\":\"I am online, assign me tasks\"}" >nul
 ) else (
-    python team.py send "我上线了，可以派活" --device !DEVNAME!
-    python team.py poll --device !DEVNAME!
+    python team.py send "I am online, assign me tasks" --device !DEVNAME!
 )
 
 echo.
 echo ========================================
-echo   接好了！
+echo  DONE. Now open THIS PC's WorkBuddy and say:
+echo  "Read .workbuddy/memory/SYNC.md, join the team bus and start working"
 echo.
-echo   现在跟这台电脑的 WorkBuddy 说：
-echo   「读 .workbuddy/memory/SYNC.md，接入协作总线开始干活」
-echo.
-echo   随时看两台状态: https://allsoft.asia/team
+echo  Watch both PCs: https://allsoft.asia/team
 echo ========================================
 echo.
+echo  Opening Chinese guide...
+notepad "%TARGET%\SETUP_GUIDE.md"
 pause
