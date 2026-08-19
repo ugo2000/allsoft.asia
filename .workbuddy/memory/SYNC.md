@@ -18,18 +18,11 @@ read_when:
 
 **对端 WorkBuddy（另一台电脑）**
 - 账号 UIN：`330101365861`；绑定手机号：`13718272791`
-- agent-mail 邮箱：**未知（待获取）**。试过以下地址**全部退信**：
-  - `330101365861` → 系统自动补全 `330101365861@qq.com` → No MX Record
-  - `13718272791@agent.qq.com` → mailbox unavailable（不存在）
-  - `330101365861@agent.qq.com` → mailbox unavailable（不存在）
-  - 结论：agent 邮箱前缀是随机串（如本机 `cifb6689`），**无法从 UIN/手机号推导**，必须由用户提供对端真实地址。
+- agent-mail 邮箱：**`mmfd8440@agent.qq.com`**（由对端主动发信「Allsoft.asia 已上线」获得；前缀随机，无法从 UIN/手机号推导）
 - 本机 agent-mail：`cifb6689@agent.qq.com`（已开通，可收信）
-- 获取对端地址的两种方式：
-  1. 用户在对端 WorkBuddy 看「Agent Mail 接入成功」邮件，把里面地址（形如 `xxxx@agent.qq.com`）发给我；
-  2. 或让用户在对端说一句「给 `cifb6689@agent.qq.com` 发信说已上线」，对端发来后本机自动接应。
+- 寻址踩坑（全退信）：裸 `330101365861`→补@qq.com No MX；`13718272791@agent.qq.com` 不存在；`330101365861@agent.qq.com` 不存在。结论：邮箱前缀随机，须靠对端主动来信或用户提供。
 - 实际协调通道：云端协作总线。对端接入总线后两台即互通。
 - 本机 device 名：`pc-yotk`（见 `.workbuddy/memory/DEVICE`）。
-
 ## 二、通信靠云端总线，不靠 git
 
 总线地址：`https://allsoft.asia/api/team`（Cloudflare D1 后端，全球可达，无需 VPN）
