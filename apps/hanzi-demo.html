@@ -42,11 +42,19 @@
   .btn.ghost { background: #f0ede6; color: #5c554b; }
   .btn.ghost:active { background: #e0d9cb; }
   .hint { font-size: 12px; color: #a59b8d; margin-top: 14px; line-height: 1.7; }
+  /* 夜间主题（跟随全站 html.dark） */
+  html.dark body { background: #16130f; color: #e8e2d8; }
+  html.dark h1 { color: #d8534a; }
+  html.dark .chip { background: #241f1a; border-color: #3d362c; color: #d8d0c0; }
+  html.dark .stage { background: #1d1915; }
+  html.dark .btn.ghost { background: #2b2620; color: #b8ae9e; }
+  html.dark .hint { color: #8a8073; }
 </style>
 </head>
 <body>
 <a href="/" style="position:fixed;top:12px;left:12px;z-index:9999;padding:8px 14px;background:#fff;color:#b8322a;border:1px solid #b8322a;border-radius:8px;font:600 13px/1 -apple-system,sans-serif;text-decoration:none;" data-i18n="nav.home">← 返回首页</a>
-<a href="javascript:void(0)" id="langSwitch" style="position:fixed;top:12px;right:12px;z-index:9999;padding:6px 12px;border:1px solid #b8322a;border-radius:8px;background:#fff;color:#b8322a;font:600 13px/1 -apple-system,sans-serif;text-decoration:none;">EN</a>
+<a href="javascript:void(0)" id="langSwitch" style="position:fixed;top:12px;right:74px;z-index:9999;padding:6px 12px;border:1px solid #b8322a;border-radius:8px;background:#fff;color:#b8322a;font:600 13px/1 -apple-system,sans-serif;text-decoration:none;">EN</a>
+<a href="javascript:void(0)" id="themeSwitch" style="position:fixed;top:12px;right:12px;z-index:9999;padding:6px 12px;border:1px solid #b8322a;border-radius:8px;background:#fff;color:#b8322a;font:600 13px/1 -apple-system,sans-serif;text-decoration:none;">🌙</a>
 <div class="wrap">
   <h1 data-i18n="hz.title">汉字解锁 · 笔顺试写</h1>
   <p class="sub" data-i18n="hz.sub">这是「老外学汉字」App 的核心功能演示：选一个字，看真实笔画顺序动起来。</p>
@@ -68,6 +76,7 @@
 <script src="hanzi-writer.min.js"></script>
 <script src="/js/lang/en.core.js"></script>
 <script src="/js/i18n.js"></script>
+<script src="/js/theme.js"></script>
 <script>
   var SAMPLES = ["人","木","水","火","中","好","日","月","山","大","口","心"];
   var writer = null;
