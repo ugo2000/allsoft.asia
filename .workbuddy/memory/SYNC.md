@@ -16,8 +16,12 @@ read_when:
 每台机器有唯一 device 名。本机名字存在 `.workbuddy/memory/DEVICE` 文件里（一行纯文本）。
 读不到就用 `hostname` 当名字并写入该文件。
 
-**对端 WorkBuddy（另一台电脑）UIN：`330101365861`**
-- 直接联系通道：智能体邮箱（agent-mail）**已开通**，本机地址 `cifb6689@agent.qq.com`，可用 UIN 直接寻址对端（已向 `330101365861` 发接入邀请）。
+**对端 WorkBuddy（另一台电脑）**
+- 账号 UIN：`330101365861`；绑定手机号：`13718272791`
+- agent-mail 邮箱：`13718272791@agent.qq.com`（手机号作前缀 + `agent.qq.com` 域）
+- 直接联系通道：智能体邮箱（agent-mail）**已开通**，本机地址 `cifb6689@agent.qq.com`
+- ⚠️ 寻址坑：收件人**必须带完整域名**。裸 UIN `330101365861` 会被系统自动补全成 `330101365861@qq.com`（默认域名 qq.com），导致「No MX Record」投递失败。正确写法是用 `13718272791@agent.qq.com`。
+- 已向 `13718272791@agent.qq.com` 发送接入邀请邮件且对端已读（2026-08-19）。
 - 实际协调通道：云端协作总线。对端接入总线后两台即互通，无需人工传话。
 - 本机 device 名：`pc-yotk`（见 `.workbuddy/memory/DEVICE`）。
 
