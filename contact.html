@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>联系我们 - AllSoft.asia | 合作咨询 · 技术支持 · 商务洽谈</title>
-<meta name="description" content="联系 AllSoft.asia 团队。产品咨询、技术支持、商务合作、定制开发需求，欢迎随时联系我们。我们读每一封邮件，回复每一条消息。">
+<title data-i18n="contact.title">联系我们 - AllSoft.asia | 合作咨询 · 技术支持 · 商务洽谈</title>
+<meta name="description" data-i18n-meta="contact.meta.desc" content="联系 AllSoft.asia 团队。产品咨询、技术支持、商务合作、定制开发需求，欢迎随时联系我们。我们读每一封邮件，回复每一条消息。">
 <meta name="keywords" content="联系AllSoft,商务合作,技术支持,定制开发,咨询">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://allsoft.asia/contact">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://allsoft.asia/contact.html">
 <meta property="og:title" content="联系我们 - AllSoft.asia">
-<meta property="og:description" content="产品咨询、技术支持、商务合作。欢迎随时联系。">
+<meta property="og:description" data-i18n-meta="contact.meta.og" content="产品咨询、技术支持、商务合作。欢迎随时联系。">
 <meta property="og:site_name" content="AllSoft.asia">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
@@ -44,13 +44,13 @@
     <nav class="nav">
       <a href="/" class="nav-brand"><span class="logo-icon">A</span><span class="brand-text">AllSoft.asia</span></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="/">首页</a></li>
-        <li><a href="/products">软件集合</a></li>
-        <li><a href="/blog">博客</a></li>
-        <li><a href="/faq">常见问题</a></li>
-        <li><a href="/about">关于</a></li>
-        <li><a href="/contact" class="btn btn-primary btn-sm nav-cta active">联系我们</a></li>
-              <li><a href="/data">网站数据</a></li>
+        <li><a href="/" data-i18n="nav.home">首页</a></li>
+        <li><a href="/products" data-i18n="nav.products">软件集合</a></li>
+        <li><a href="/blog" data-i18n="nav.blog">博客</a></li>
+        <li><a href="/faq" data-i18n="nav.faq">常见问题</a></li>
+        <li><a href="/about" data-i18n="nav.about">关于</a></li>
+        <li><a href="/contact" class="btn btn-primary btn-sm nav-cta active" data-i18n="nav.contact">联系我们</a></li>
+              <li><a href="/data" data-i18n="nav.data">网站数据</a></li>
       </ul>
       <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
     </nav>
@@ -59,9 +59,9 @@
 
 <div class="page-header">
   <div class="container">
-    <nav class="breadcrumb"><a href="/">首页</a><span class="sep">/</span>联系我们</nav>
-    <h1>联系我们</h1>
-    <p>有什么想说的，尽管说</p>
+    <nav class="breadcrumb"><a href="/" data-i18n="nav.home">首页</a><span class="sep">/</span><span data-i18n="contact.h1">联系我们</span></nav>
+    <h1 data-i18n="contact.h1">联系我们</h1>
+    <p data-i18n="contact.sub">有什么想说的，尽管说</p>
   </div>
 </div>
 
@@ -69,37 +69,37 @@
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info">
-        <h3>联系方式</h3>
-        <p>📧 邮箱：<a href="mailto:ugo2000@126.com">ugo2000@126.com</a></p>
-        <p>💬 在线聊天：<a href="/chat">ChatHub</a></p>
-        <p>💻 GitHub：<a href="https://github.com/ugo2000">@ugo2000</a></p>
+        <h3 data-i18n="contact.info.t">联系方式</h3>
+        <p data-i18n="contact.info.email">📧 邮箱：<a href="mailto:ugo2000@126.com">ugo2000@126.com</a></p>
+        <p data-i18n="contact.info.chat">💬 在线聊天：<a href="/chat">ChatHub</a></p>
+        <p data-i18n="contact.info.github">💻 GitHub：<a href="https://github.com/ugo2000">@ugo2000</a></p>
 
-        <h3 style="margin-top:32px;">回复时间</h3>
-        <p>工作日通常在24小时内回复。周末可能慢一些，但一定会回。</p>
+        <h3 style="margin-top:32px;" data-i18n="contact.reply.t">回复时间</h3>
+        <p data-i18n="contact.reply.d">工作日通常在24小时内回复。周末可能慢一些，但一定会回。</p>
 
-        <h3 style="margin-top:32px;">商务合作</h3>
-        <p>如果是合作或定制开发需求，请在邮件标题注明"合作"，我们会优先处理。</p>
+        <h3 style="margin-top:32px;" data-i18n="contact.biz.t">商务合作</h3>
+        <p data-i18n="contact.biz.d">如果是合作或定制开发需求，请在邮件标题注明"合作"，我们会优先处理。</p>
       </div>
 
       <div>
         <form class="contact-form" id="contact-form">
           <div class="form-group">
-            <label for="name">你的名字</label>
-            <input type="text" id="name" name="name" placeholder="怎么称呼你" required>
+            <label for="name" data-i18n="contact.form.name">你的名字</label>
+            <input type="text" id="name" name="name" placeholder="怎么称呼你" required data-i18n-ph="contact.form.name.ph">
           </div>
           <div class="form-group">
-            <label for="email">邮箱</label>
-            <input type="email" id="email" name="email" placeholder="我们怎么联系你" required>
+            <label for="email" data-i18n="contact.form.email">邮箱</label>
+            <input type="email" id="email" name="email" placeholder="我们怎么联系你" required data-i18n-ph="contact.form.email.ph">
           </div>
           <div class="form-group">
-            <label for="subject">主题</label>
-            <input type="text" id="subject" name="subject" placeholder="想聊什么" required>
+            <label for="subject" data-i18n="contact.form.subject">主题</label>
+            <input type="text" id="subject" name="subject" placeholder="想聊什么" required data-i18n-ph="contact.form.subject.ph">
           </div>
           <div class="form-group">
-            <label for="message">留言</label>
-            <textarea id="message" name="message" rows="5" placeholder="详细说说" required></textarea>
+            <label for="message" data-i18n="contact.form.message">留言</label>
+            <textarea id="message" name="message" rows="5" placeholder="详细说说" required data-i18n-ph="contact.form.message.ph"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg">发送消息</button>
+          <button type="submit" class="btn btn-primary btn-lg" data-i18n="contact.form.submit">发送消息</button>
         </form>
       </div>
     </div>
@@ -109,14 +109,16 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div><div class="footer-brand">AllSoft.asia</div><p class="footer-desc">一人独立软件工作室的自研软件集合站。小而美，持续孵化。</p></div>
-      <div class="footer-col"><h4>软件集合</h4><ul><li><a href="/products/chathub">ChatHub 在线聊天</a></li><li><a href="/products/devils-advocate">魔鬼代言人 · AI质检</a></li><li><a href="/chat">ChatHub 直接入口</a></li></ul></div>
-      <div class="footer-col"><h4>资源</h4><ul><li><a href="/blog">博客</a></li><li><a href="/faq">常见问题</a></li><li><a href="/about">关于工作室</a></li><li><a href="/contact">联系我们</a></li></ul></div>
-      <div class="footer-col"><h4>法律</h4><ul><li><a href="/privacy">隐私政策</a></li><li><a href="/terms">服务条款</a></li></ul></div>
+      <div><div class="footer-brand">AllSoft.asia</div><p class="footer-desc" data-i18n="footer.desc">一人独立软件工作室的自研软件集合站。小而美，持续孵化。</p></div>
+      <div class="footer-col"><h4 data-i18n="footer.colProducts">软件集合</h4><ul><li><a href="/products/chathub" data-i18n="footer.chathub">ChatHub 在线聊天</a></li><li><a href="/products/devils-advocate" data-i18n="footer.devils">魔鬼代言人 · AI质检</a></li><li><a href="/chat" data-i18n="footer.chathubDirect">ChatHub 直接入口</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.colResources">资源</h4><ul><li><a href="/blog" data-i18n="footer.blog">博客</a></li><li><a href="/faq" data-i18n="footer.faq">常见问题</a></li><li><a href="/about" data-i18n="footer.about">关于工作室</a></li><li><a href="/contact" data-i18n="footer.contact">联系我们</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.colLegal">法律</h4><ul><li><a href="/privacy" data-i18n="footer.privacy">隐私政策</a></li><li><a href="/terms" data-i18n="footer.terms">服务条款</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>&copy; 2026 AllSoft.asia. All rights reserved.</span><span>Made with ❤️ on Cloudflare</span></div>
+    <div class="footer-bottom"><span data-i18n="footer.copyright">&copy; 2026 AllSoft.asia. All rights reserved.</span><span data-i18n="footer.made">Made with ❤️ on Cloudflare</span></div>
   </div>
 </footer>
 <script src="/js/main.js?v=2"></script>
+<script src="/js/lang/en.core.js"></script>
+<script src="/js/i18n.js"></script>
 </body>
 </html>

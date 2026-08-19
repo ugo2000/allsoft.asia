@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>页面未找到 - AllSoft.asia</title>
+<title data-i18n="404.t">页面未找到 - AllSoft.asia</title>
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='70' font-size='52' font-weight='bold' text-anchor='middle' fill='white'>A</text></svg>">
 <link rel="stylesheet" href="/css/style.css?v=2">
@@ -14,13 +14,13 @@
     <nav class="nav">
       <a href="/" class="nav-brand"><span class="logo-icon">A</span><span class="brand-text">AllSoft.asia</span></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="/">首页</a></li>
-        <li><a href="/products">软件集合</a></li>
-        <li><a href="/blog">博客</a></li>
-        <li><a href="/faq">常见问题</a></li>
-        <li><a href="/about">关于</a></li>
-        <li><a href="/contact" class="btn btn-primary btn-sm nav-cta">联系我们</a></li>
-              <li><a href="/data">网站数据</a></li>
+        <li><a href="/" data-i18n="nav.home">首页</a></li>
+        <li><a href="/products" data-i18n="nav.products">软件集合</a></li>
+        <li><a href="/blog" data-i18n="nav.blog">博客</a></li>
+        <li><a href="/faq" data-i18n="nav.faq">常见问题</a></li>
+        <li><a href="/about" data-i18n="nav.about">关于</a></li>
+        <li><a href="/contact" class="btn btn-primary btn-sm nav-cta" data-i18n="nav.contact">联系我们</a></li>
+              <li><a href="/data" data-i18n="nav.data">网站数据</a></li>
       </ul>
       <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
     </nav>
@@ -29,12 +29,12 @@
 
 <section class="section" style="text-align:center;padding:120px 0;">
   <div class="container">
-    <h1 style="font-size:5rem;font-weight:800;color:var(--c-primary);margin-bottom:16px;">404</h1>
-    <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">页面走丢了</h2>
-    <p style="color:var(--c-text-light);margin-bottom:32px;">你找的页面不存在，可能被移走了或者从来没存在过。</p>
+    <h1 style="font-size:5rem;font-weight:800;color:var(--c-primary);margin-bottom:16px;" data-i18n="404.h1">404</h1>
+    <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;" data-i18n="404.t">页面走丢了</h2>
+    <p style="color:var(--c-text-light);margin-bottom:32px;" data-i18n="404.d">你找的页面不存在，可能被移走了或者从来没存在过。</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="/" class="btn btn-primary btn-lg">回到首页</a>
-      <a href="/chat" class="btn btn-outline btn-lg">去聊天</a>
+      <a href="/" class="btn btn-primary btn-lg" data-i18n="404.btnHome">回到首页</a>
+      <a href="/chat" class="btn btn-outline btn-lg" data-i18n="404.btnChat">去聊天</a>
     </div>
   </div>
 </section>
@@ -42,14 +42,16 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div><div class="footer-brand">AllSoft.asia</div><p class="footer-desc">一人独立软件工作室的自研软件集合站。小而美，持续孵化。</p></div>
-      <div class="footer-col"><h4>软件集合</h4><ul><li><a href="/products/chathub">ChatHub 在线聊天</a></li><li><a href="/products/devils-advocate">魔鬼代言人 · AI质检</a></li><li><a href="/chat">ChatHub 直接入口</a></li></ul></div>
-      <div class="footer-col"><h4>资源</h4><ul><li><a href="/blog">博客</a></li><li><a href="/faq">常见问题</a></li><li><a href="/about">关于工作室</a></li><li><a href="/contact">联系我们</a></li></ul></div>
-      <div class="footer-col"><h4>法律</h4><ul><li><a href="/privacy">隐私政策</a></li><li><a href="/terms">服务条款</a></li></ul></div>
+      <div><div class="footer-brand">AllSoft.asia</div><p class="footer-desc" data-i18n="footer.desc">一人独立软件工作室的自研软件集合站。小而美，持续孵化。</p></div>
+      <div class="footer-col"><h4 data-i18n="footer.colProducts">软件集合</h4><ul><li><a href="/products/chathub" data-i18n="footer.chathub">ChatHub 在线聊天</a></li><li><a href="/products/devils-advocate" data-i18n="footer.devils">魔鬼代言人 · AI质检</a></li><li><a href="/chat" data-i18n="footer.chathubDirect">ChatHub 直接入口</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.colResources">资源</h4><ul><li><a href="/blog" data-i18n="footer.blog">博客</a></li><li><a href="/faq" data-i18n="footer.faq">常见问题</a></li><li><a href="/about" data-i18n="footer.about">关于工作室</a></li><li><a href="/contact" data-i18n="footer.contact">联系我们</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.colLegal">法律</h4><ul><li><a href="/privacy" data-i18n="footer.privacy">隐私政策</a></li><li><a href="/terms" data-i18n="footer.terms">服务条款</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>&copy; 2026 AllSoft.asia. All rights reserved.</span><span>Made with ❤️ on Cloudflare</span></div>
+    <div class="footer-bottom"><span data-i18n="footer.copyright">&copy; 2026 AllSoft.asia. All rights reserved.</span><span data-i18n="footer.made">Made with ❤️ on Cloudflare</span></div>
   </div>
 </footer>
 <script src="/js/main.js?v=2"></script>
+<script src="/js/lang/en.core.js"></script>
+<script src="/js/i18n.js"></script>
 </body>
 </html>
