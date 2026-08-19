@@ -13,19 +13,19 @@ Collection of AI capabilities including writing, translation, summarization, and
 ## Key Pages
 
 - Homepage: https://allsoft.asia/
-- Products: https://allsoft.asia/products.html
-- ChatHub (live chat): https://allsoft.asia/chat.html
-- Pricing: https://allsoft.asia/pricing.html
-- FAQ: https://allsoft.asia/faq.html
-- Blog: https://allsoft.asia/blog.html
-- About: https://allsoft.asia/about.html
-- Contact: https://allsoft.asia/contact.html
+- Products: https://allsoft.asia/products
+- ChatHub (live chat): https://allsoft.asia/chat
+- Pricing: https://allsoft.asia/pricing
+- FAQ: https://allsoft.asia/faq
+- Blog: https://allsoft.asia/blog
+- About: https://allsoft.asia/about
+- Contact: https://allsoft.asia/contact
 
 ## Blog Posts
 
-1. [2026 Free AI Tools Guide](https://allsoft.asia/blog/ai-tools-2026.html) - Comprehensive guide to free AI tools accessible in China without VPN
-2. [One Person Company (OPC) Guide](https://allsoft.asia/blog/opc-one-person-company.html) - Practical guide to starting a one-person company in the AI era
-3. [Free Resources for Zero-Cost Business](https://allsoft.asia/blog/free-resources.html) - How to use GitHub, Cloudflare, and other free resources to build an online business
+1. [2026 Free AI Tools Guide](https://allsoft.asia/blog/ai-tools-2026) - Comprehensive guide to free AI tools accessible in China without VPN
+2. [One Person Company (OPC) Guide](https://allsoft.asia/blog/opc-one-person-company) - Practical guide to starting a one-person company in the AI era
+3. [Free Resources for Zero-Cost Business](https://allsoft.asia/blog/free-resources) - How to use GitHub, Cloudflare, and other free resources to build an online business
 
 ## Technology
 
@@ -40,4 +40,4 @@ Collection of AI capabilities including writing, translation, summarization, and
 
 - Email: hello@allsoft.asia
 - GitHub: https://github.com/ugo2000
-- Chat: https://allsoft.asia/chat.html
+- Chat: https://allsoft.asia/chat
