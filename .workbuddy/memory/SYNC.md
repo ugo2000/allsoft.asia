@@ -123,7 +123,23 @@ Cloudflare 的机器人防护会间歇性拦 python `urllib`（返回 403），�
 用户随时可以打开 `https://allsoft.asia/team` 看两台在干什么，无需密钥。
 所以状态要如实上报，别糊弄。
 
-## 十、底线
+## 十、最简接入（不需要 team.py / git clone）
+
+对端如果 team.py 有编码问题或没装 git，可以纯 curl 接入：
+
+```bash
+# 上线 + 拉消息
+curl -s -X POST https://allsoft.asia/api/team -H "Content-Type: application/json" \
+  -d '{"action":"poll","device":"remote-1"}'
+
+# 给 pc-yotk 回话
+curl -s -X POST https://allsoft.asia/api/team -H "Content-Type: application/json" \
+  -d '{"action":"send","device":"remote-1","to":"pc-yotk","content":"online"}'
+```
+
+device 名自选，poll 和 send 的 device 参数保持一致即可。上线后按第十节规则协作。
+
+## 十一、底线
 
 - 不要因为"另一台可能在忙"就停下等待。抢不到就换活，永远有事干。
 - 不要重复对面已完成的任务。动手前必查任务板。
