@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>网站数据 - AllSoft.asia</title>
+<title data-i18n="admin.title">网站数据 - AllSoft.asia</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='70' font-size='52' font-weight='bold' text-anchor='middle' fill='white'>A</text></svg>">
 <link rel="stylesheet" href="/css/style.v5.css">
 <style>
@@ -77,9 +77,9 @@ html.dark .tabs { border-bottom-color: var(--c-border); }
     <nav class="nav">
       <a href="/" class="nav-brand"><span class="logo-icon">A</span><span class="brand-text">AllSoft.asia</span></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="/">首页</a></li>
-        <li><a href="/products">软件集合</a></li>
-        <li><a href="/data" class="active">网站数据</a></li>
+        <li><a href="/" data-i18n="nav.home">首页</a></li>
+        <li><a href="/products" data-i18n="nav.products">软件集合</a></li>
+        <li><a href="/data" class="active" data-i18n="nav.data">网站数据</a></li>
       </ul>
       <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
     </nav>
@@ -89,29 +89,29 @@ html.dark .tabs { border-bottom-color: var(--c-border); }
 <div class="data-wrap">
 
   <div class="data-header">
-    <h1>网站数据看板</h1>
-    <button class="refresh-btn" onclick="loadAll()">刷新</button>
+    <h1 data-i18n="admin.h1">网站数据看板</h1>
+    <button class="refresh-btn" onclick="loadAll()" data-i18n="admin.refresh">刷新</button>
   </div>
-  <p style="color:var(--c-text-light);font-size:13px;margin-bottom:4px;">实时公开数据 · 访客来源、设备、浏览量一目了然</p>
+  <p style="color:var(--c-text-light);font-size:13px;margin-bottom:4px;" data-i18n="admin.sub">实时公开数据 · 访客来源、设备、浏览量一目了然</p>
 
   <div class="tabs">
-    <div class="tab active" onclick="switchTab('traffic')">流量概览</div>
-    <div class="tab" onclick="switchTab('visitors')">访客记录</div>
-    <div class="tab" onclick="switchTab('breakdown')">分布统计</div>
+    <div class="tab active" onclick="switchTab('traffic')" data-i18n="admin.tabTraffic">流量概览</div>
+    <div class="tab" onclick="switchTab('visitors')" data-i18n="admin.tabVisitors">访客记录</div>
+    <div class="tab" onclick="switchTab('breakdown')" data-i18n="admin.tabBreakdown">分布统计</div>
   </div>
 
   <div id="tab-traffic">
-    <div id="loading1" class="loading">加载流量数据...</div>
+    <div id="loading1" class="loading" data-i18n="admin.loadTraffic">加载流量数据...</div>
     <div id="trafficContent" style="display:none;">
       <div class="stats-grid" id="statsGrid"></div>
       <div class="section">
-        <h3>每日页面浏览量 (PV)</h3>
+        <h3 data-i18n="admin.dailyPV">每日页面浏览量 (PV)</h3>
         <svg id="barChart" class="line-chart" preserveAspectRatio="none"></svg>
       </div>
       <div class="section">
-        <h3>每日明细</h3>
+        <h3 data-i18n="admin.dailyDetail">每日明细</h3>
         <table>
-          <thead><tr><th>日期</th><th>页面浏览</th><th>总请求</th><th>独立访客</th><th>流量</th></tr></thead>
+          <thead><tr><th data-i18n="admin.thDate">日期</th><th data-i18n="admin.thPV">页面浏览</th><th data-i18n="admin.thReq">总请求</th><th data-i18n="admin.thUV">独立访客</th><th data-i18n="admin.thBW">流量</th></tr></thead>
           <tbody id="trafficTable"></tbody>
         </table>
       </div>
@@ -121,14 +121,14 @@ html.dark .tabs { border-bottom-color: var(--c-border); }
   <div id="tab-visitors" style="display:none;">
     <div style="margin-bottom:12px;">
       <span class="live-dot"></span>
-      <span style="font-size:13px;color:#64748b;">实时访客记录（最近 100 条）</span>
+      <span style="font-size:13px;color:var(--c-text-lighter);" data-i18n="admin.liveVisitors">实时访客记录（最近 100 条）</span>
     </div>
-    <div id="loading2" class="loading">加载访客记录...</div>
+    <div id="loading2" class="loading" data-i18n="admin.loadVisitors">加载访客记录...</div>
     <div id="visitorsContent" style="display:none;">
       <div class="section" style="padding:0;overflow:hidden;">
         <div style="overflow-x:auto;">
           <table>
-            <thead><tr><th>时间</th><th>IP</th><th>国家/地区</th><th>城市</th><th>设备</th><th>浏览器</th><th>系统</th><th>访问页面</th><th>来源</th></tr></thead>
+            <thead><tr><th data-i18n="admin.thTime">时间</th><th data-i18n="admin.thIP">IP</th><th data-i18n="admin.thCountry">国家/地区</th><th data-i18n="admin.thCity">城市</th><th data-i18n="admin.thDevice">设备</th><th data-i18n="admin.thBrowser">浏览器</th><th data-i18n="admin.thOS">系统</th><th data-i18n="admin.thPage">访问页面</th><th data-i18n="admin.thReferrer">来源</th></tr></thead>
             <tbody id="visitorsTable"></tbody>
           </table>
         </div>
@@ -137,7 +137,7 @@ html.dark .tabs { border-bottom-color: var(--c-border); }
   </div>
 
   <div id="tab-breakdown" style="display:none;">
-    <div id="loading3" class="loading">加载分布数据...</div>
+    <div id="loading3" class="loading" data-i18n="admin.loadBreakdown">加载分布数据...</div>
     <div id="breakdownContent" style="display:none;">
       <div class="breakdown-grid" id="breakdownGrid"></div>
     </div>
@@ -146,6 +146,7 @@ html.dark .tabs { border-bottom-color: var(--c-border); }
 </div>
 
 <script>
+const T=(k,zh)=>(window.AllSoftI18n?AllSoftI18n.t(k,zh):zh);
 function fmt(n) {
   if (n >= 1e9) return (n/1e9).toFixed(1) + 'G';
   if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
@@ -167,7 +168,7 @@ function deviceTag(d) {
   return '<span class="tag ' + cls + '">' + d + '</span>';
 }
 function countryFlag(c) {
-  if (!c || c === 'Unknown') return '<span class="flag">未知</span>';
+  if (!c || c === 'Unknown') return '<span class="flag">'+T('admin.unknown','未知')+'</span>';
   return c;
 }
 function pageShort(p) {
@@ -194,11 +195,11 @@ async function loadTraffic() {
 
     const s = data.summary;
     document.getElementById('statsGrid').innerHTML = [
-      '<div class="stat-card"><div class="num">' + fmt(s.pageViews) + '</div><div class="label">页面浏览量</div><div class="sub">30天</div></div>',
-      '<div class="stat-card"><div class="num">' + fmt(s.uniqueVisitors) + '</div><div class="label">独立访客</div><div class="sub">30天</div></div>',
-      '<div class="stat-card"><div class="num">' + fmt(s.requests) + '</div><div class="label">总请求</div><div class="sub">30天</div></div>',
-      '<div class="stat-card"><div class="num">' + s.avgPvPerVisitor + '</div><div class="label">人均浏览</div><div class="sub">PV/访客</div></div>',
-      '<div class="stat-card"><div class="num">' + (s.bandwidth > 0 ? fmt(s.bandwidth) : '—') + '</div><div class="label">流量消耗</div><div class="sub">30天</div></div>'
+      '<div class="stat-card"><div class="num">' + fmt(s.pageViews) + '</div><div class="label">'+T('admin.statPV','页面浏览量')+'</div><div class="sub">'+T('admin.days30','30天')+'</div></div>',
+      '<div class="stat-card"><div class="num">' + fmt(s.uniqueVisitors) + '</div><div class="label">'+T('admin.statUV','独立访客')+'</div><div class="sub">'+T('admin.days30','30天')+'</div></div>',
+      '<div class="stat-card"><div class="num">' + fmt(s.requests) + '</div><div class="label">'+T('admin.statReq','总请求')+'</div><div class="sub">'+T('admin.days30','30天')+'</div></div>',
+      '<div class="stat-card"><div class="num">' + s.avgPvPerVisitor + '</div><div class="label">'+T('admin.statAvg','人均浏览')+'</div><div class="sub">'+T('admin.statAvgSub','PV/访客')+'</div></div>',
+      '<div class="stat-card"><div class="num">' + (s.bandwidth > 0 ? fmt(s.bandwidth) : '—') + '</div><div class="label">'+T('admin.statBW','流量消耗')+'</div><div class="sub">'+T('admin.days30','30天')+'</div></div>'
     ].join('');
 
     const allDaily = data.daily;
@@ -222,7 +223,7 @@ async function loadTraffic() {
       return '<tr><td>' + d.date + '</td><td>' + d.pv + '</td><td>' + fmt(d.req) + '</td><td>' + d.uniq + '</td><td>' + (d.bytes > 0 ? fmt(d.bytes) : '—') + '</td></tr>';
     }).join('');
   } catch (e) {
-    document.getElementById('loading1').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p>';
+    document.getElementById('loading1').innerHTML = '<p class="err-msg">'+T('admin.loadFail','加载失败')+': ' + e.message + '</p>';
   }
 }
 
@@ -235,7 +236,7 @@ async function loadVisitors() {
     document.getElementById('visitorsContent').style.display = 'block';
 
     if (data.visitors.length === 0) {
-      document.getElementById('visitorsTable').innerHTML = '<tr><td colspan="9" style="text-align:center;padding:30px;color:var(--c-text-lighter);">暂无访客记录，访问其他页面后刷新即可看到</td></tr>';
+      document.getElementById('visitorsTable').innerHTML = '<tr><td colspan="9" style="text-align:center;padding:30px;color:var(--c-text-lighter);">'+T('admin.noVisitors','暂无访客记录，访问其他页面后刷新即可看到')+'</td></tr>';
       return;
     }
 
@@ -253,7 +254,7 @@ async function loadVisitors() {
         '</tr>';
     }).join('');
   } catch (e) {
-    document.getElementById('loading2').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p>';
+    document.getElementById('loading2').innerHTML = '<p class="err-msg">'+T('admin.loadFail','加载失败')+': ' + e.message + '</p>';
   }
 }
 
@@ -278,14 +279,14 @@ async function loadBreakdown() {
     }
 
     document.getElementById('breakdownGrid').innerHTML = [
-      renderBreakdown('设备类型', s.device),
-      renderBreakdown('国家/地区', s.country),
-      renderBreakdown('浏览器', s.browser),
-      renderBreakdown('操作系统', s.os),
-      renderBreakdown('访问页面', s.page)
+      renderBreakdown(T('admin.bdDevice','设备类型'), s.device),
+      renderBreakdown(T('admin.bdCountry','国家/地区'), s.country),
+      renderBreakdown(T('admin.bdBrowser','浏览器'), s.browser),
+      renderBreakdown(T('admin.bdOS','操作系统'), s.os),
+      renderBreakdown(T('admin.bdPage','访问页面'), s.page)
     ].join('');
   } catch (e) {
-    document.getElementById('loading3').innerHTML = '<p class="err-msg">加载失败: ' + e.message + '</p>';
+    document.getElementById('loading3').innerHTML = '<p class="err-msg">'+T('admin.loadFail','加载失败')+': ' + e.message + '</p>';
   }
 }
 
@@ -299,6 +300,8 @@ loadAll();
 // Auto refresh every 60s
 setInterval(loadAll, 60000);
 </script>
+<script src="/js/lang/en.core.js"></script>
+<script src="/js/i18n.js"></script>
 <script src="/js/theme.js?v=2"></script>
 </body>
 </html>
