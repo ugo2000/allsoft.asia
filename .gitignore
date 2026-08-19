@@ -1,4 +1,6 @@
-.workbuddy/
+.workbuddy/*
+!.workbuddy/memory/
+!.workbuddy/memory/**
 node_modules/
 .wrangler/
 *.log
