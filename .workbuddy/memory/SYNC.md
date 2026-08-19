@@ -16,6 +16,11 @@ read_when:
 每台机器有唯一 device 名。本机名字存在 `.workbuddy/memory/DEVICE` 文件里（一行纯文本）。
 读不到就用 `hostname` 当名字并写入该文件。
 
+**对端 WorkBuddy（另一台电脑）UIN：`330101365861`**
+- 直接联系通道：智能体邮箱（agent-mail）。截至 2026-08-19 该通道**尚未开通**，暂时无法直接发信，先走下方云端总线。
+- 实际协调通道：云端协作总线。对端接入总线后两台即互通，无需人工传话。
+- 本机 device 名：`pc-yotk`（见 `.workbuddy/memory/DEVICE`）。
+
 ## 二、通信靠云端总线，不靠 git
 
 总线地址：`https://allsoft.asia/api/team`（Cloudflare D1 后端，全球可达，无需 VPN）
