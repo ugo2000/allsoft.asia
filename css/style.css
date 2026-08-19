@@ -36,6 +36,7 @@
 
 /* ---------- Dark (Night) Theme ---------- */
 html.dark {
+  color-scheme: dark;
   --c-primary: #60a5fa;
   --c-primary-dark: #3b82f6;
   --c-primary-light: #93c5fd;
@@ -44,9 +45,9 @@ html.dark {
   --c-bg: #0f172a;
   --c-bg-alt: #1e293b;
   --c-bg-dark: #0b1120;
-  --c-text: #e2e8f0;
-  --c-text-light: #94a3b8;
-  --c-text-lighter: #64748b;
+  --c-text: #e8edf5;
+  --c-text-light: #a6b4c8;
+  --c-text-lighter: #7e8ca3;
   --c-border: #334155;
   --c-header-bg: rgba(15,23,42,.92);
   --c-hero-1: #0b1c33;
