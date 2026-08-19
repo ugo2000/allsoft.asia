@@ -1,10 +1,10 @@
 # 跨账号协作 · 另一台电脑安装说明
 
-本文件说明如何让「另一台电脑上的另一个 WorkBuddy 账号」接入 allsoft.asia 项目的共享协作层。
+本文件说明如何让「另一台电脑（同一 GitHub 账号 ugo2000，同一人）」接入 allsoft.asia 项目的共享协作层。
 
 ## 原理
 
-两个不同 WorkBuddy 账号通过 GitHub 仓库 `ugo2000/allsoft.asia` 协同：
+两台电脑（同一 GitHub 账号 ugo2000）通过 GitHub 仓库 `ugo2000/allsoft.asia` 协同：
 
 - 仓库公开，**任何人都能 clone 读取**工作记忆（`.workbuddy/memory/`）
 - 工作记忆已放开 git 追踪（`.gitignore` 里有 `!.workbuddy/memory/` 例外）
@@ -25,15 +25,11 @@ git clone https://github.com/ugo2000/allsoft.asia.git
 在 WorkBuddy 里「打开文件夹」→ 选择 clone 下来的 `allsoft.asia` 目录。
 WorkBuddy 会自动读取 `.workbuddy/memory/SYNC.md` 作为协作上下文。
 
-### 3. 申请写回权限（双向协作需要）
+### 3. 写回权限（已就绪，无需额外操作）
 
-公开仓库默认只能读。要让另一台也能 push 工作记忆：
+仓库 owner 就是 **ugo2000**。另一台电脑只要用**同一个 GitHub 账号 ugo2000** 登录并 clone，就既能读也能写（push），**不需要**任何 Collaborator 邀请。
 
-- 把另一台电脑的 **GitHub 用户名** 发给 U哥
-- U哥在 GitHub 仓库 → Settings → Collaborators → 添加该用户名
-- 之后另一台即可 `git push`
-
-> 若暂时没写回权限，也能正常读取 + 在本地工作，只是改动需 U哥手动同步（或走 PR）。
+> 若你误用了另一个 GitHub 账号登录，那才需要把那个账号加为 Collaborator（见 SYNC.md 待办）。建议另一台直接用 ugo2000 登录，最省事。
 
 ### 4. 日常使用约定
 
