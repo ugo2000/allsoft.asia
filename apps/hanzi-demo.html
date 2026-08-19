@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>汉字解锁 · 笔顺试写 Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC",
+      "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #faf7f2; color: #1a1714; padding: 18px 14px 36px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 20px; color: #b8322a; letter-spacing: .04em; }
+  .sub { font-size: 13px; color: #8a8073; margin: 4px 0 16px; }
+  .picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .chip {
+    width: 44px; height: 44px; border-radius: 12px; border: 1px solid #e3ddd0;
+    background: #fff; font-size: 22px; color: #3d3730; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "KaiTi", "STKaiti", "Noto Serif SC", serif;
+    transition: .15s;
+  }
+  .chip:hover { border-color: #b8322a; }
+  .chip.active { background: #b8322a; color: #fff; border-color: #b8322a; }
+  .stage {
+    background: #fff; border-radius: 18px; padding: 12px;
+    box-shadow: 0 2px 14px rgba(0,0,0,.06); margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #writer { width: 300px; height: 300px; max-width: 100%; }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    flex: 1; min-width: 120px; padding: 12px 0; border: none; border-radius: 12px;
+    font-size: 15px; font-weight: 600; cursor: pointer; transition: .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn.primary { background: #b8322a; color: #fff; }
+  .btn.primary:active { background: #9a2822; }
+  .btn.ghost { background: #f0ede6; color: #5c554b; }
+  .btn.ghost:active { background: #e0d9cb; }
+  .hint { font-size: 12px; color: #a59b8d; margin-top: 14px; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>汉字解锁 · 笔顺试写</h1>
+  <p class="sub">这是「老外学汉字」App 的核心功能演示：选一个字，看真实笔画顺序动起来。</p>
+
+  <div class="picker" id="picker"></div>
+
+  <div class="stage">
+    <div id="writer"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn primary" id="animate">▶ 演示笔顺</button>
+    <button class="btn ghost" id="quiz">✎ 我来写</button>
+  </div>
+
+  <p class="hint">演示数据来自 App 自带的 100 字笔画库（HanziWriter）。完整 App 含 100 个汉字、记忆故事、例句、进度追踪与离线学习。</p>
+</div>
+
+<script src="hanzi-writer.min.js"></script>
+<script>
+  var SAMPLES = ["人","木","水","火","中","好","日","月","山","大","口","心"];
+  var writer = null;
+  var current = SAMPLES[0];
+
+  fetch("strokes.json")
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var picker = document.getElementById("picker");
+      SAMPLES.forEach(function (ch) {
+        if (!data[ch]) return;
+        var b = document.createElement("button");
+        b.className = "chip" + (ch === current ? " active" : "");
+        b.textContent = ch;
+        b.onclick = function () { select(ch); };
+        picker.appendChild(b);
+      });
+
+      function render(ch) {
+        current = ch;
+        document.getElementById("writer").innerHTML = "";
+        writer = HanziWriter.create("writer", ch, {
+          width: 300, height: 300, padding: 12,
+          showOutline: true, showCharacter: true,
+          strokeColor: "#b8322a", radicalColor: "#b8322a",
+          charDataLoader: function (c, onComplete) { onComplete(data[c]); }
+        });
+        document.querySelectorAll(".chip").forEach(function (el) {
+          el.classList.toggle("active", el.textContent === ch);
+        });
+      }
+
+      function select(ch) { render(ch); }
+
+      window.__render = render;
+      render(current);
+
+      document.getElementById("animate").onclick = function () {
+        if (writer) writer.animateCharacter();
+      };
+      document.getElementById("quiz").onclick = function () {
+        if (writer) writer.quiz();
+      };
+    })
+    .catch(function (e) {
+      document.getElementById("writer").innerHTML =
+        "<p style='color:#b8322a;font-size:14px;padding:20px;text-align:center'>笔画数据加载失败，请通过本地服务器打开本页。</p>";
+    });
+</script>
+</body>
+</html>

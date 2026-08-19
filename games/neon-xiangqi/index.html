@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEON XIANGQI — Sci-Fi Chinese Chess</title>
+<meta name="description" content="A futuristic, electronic-styled Xiangqi (Chinese Chess) game. Pieces labelled in Chinese and English, 3D stereo sound, play vs AI or a friend." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<a href="/" style="position:fixed;top:12px;left:12px;z-index:9999;padding:8px 14px;background:rgba(8,12,24,.82);color:#21e6ff;border:1px solid #21e6ff;border-radius:8px;font:600 13px/1 Rajdhani,system-ui,sans-serif;text-decoration:none;letter-spacing:.06em;backdrop-filter:blur(6px);">← 返回 AllSoft.asia</a>
+<div id="app">
+  <header class="title">
+    <h1>NEON XIANGQI</h1>
+    <div class="sub">Electron Chess Protocol · 中国象棋</div>
+  </header>
+
+  <div class="layout">
+    <!-- Board -->
+    <div class="board-wrap" id="boardWrap">
+      <div class="tray" id="capturedTop" aria-label="Black captures"></div>
+      <canvas id="board" width="588" height="650" aria-label="Xiangqi board"></canvas>
+      <div class="tray" id="capturedBottom" aria-label="Red captures"></div>
+      <div class="banner" id="banner">
+        <div class="big" id="bannerBig">VICTORY</div>
+        <div class="sub2" id="bannerSub"></div>
+        <button class="btn small" id="bannerNew">NEW GAME</button>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="card">
+        <h3>Match</h3>
+        <div class="status-bar" style="margin-top:0">
+          <span class="turn-chip">
+            <span class="turn-dot red" id="turnDot"></span>
+            <span id="turnText">RED to move</span>
+          </span>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn" id="btnNew">NEW GAME</button>
+          <button class="btn" id="btnRules">HOW TO PLAY</button>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn" id="btnFull">FULLSCREEN</button>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn active" id="btnSound">SOUND: ON</button>
+          <button class="btn active" id="btnMusic">MUSIC: ON</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Opponent</h3>
+        <div class="seg">
+          <button class="btn active" data-mode="ai">VS AI</button>
+          <button class="btn" data-mode="2p">2 PLAYERS</button>
+        </div>
+        <div class="row" id="diffRow" style="margin-top:10px">
+          <button class="btn" data-diff="easy">EASY</button>
+          <button class="btn active" data-diff="normal">NORMAL</button>
+          <button class="btn" data-diff="hard">HARD</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Cores</h3>
+        <div class="legend">
+          <div class="it"><span class="sw red"></span> Red Core (you)</div>
+          <div class="it"><span class="sw blue"></span> Blue Core (AI)</div>
+        </div>
+        <p class="keys" style="margin-top:8px">
+          Click a piece to select, then click a glowing target to move.
+          Red moves first. Win by capturing the enemy General.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Sound</h3>
+        <p class="keys">
+          Spatial 3D audio is synthesised live — each move is panned by its
+          board position. A looping Chinese-classical (guzheng / guqin) score
+          plays in the background; use <b>MUSIC</b> to toggle it.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">NEON XIANGQI · a browser game · no install required</div>
+</div>
+
+<!-- Rules Modal (English) -->
+<div class="modal-overlay" id="rulesModal">
+  <div class="modal">
+    <button class="close-x" id="rulesClose">×</button>
+    <h2>HOW TO PLAY · NEON XIANGQI</h2>
+    <p>
+      <b>Neon Xiangqi</b> is a futuristic take on <b>Xiangqi (Chinese Chess)</b>.
+      Two armies — the <span style="color:#ff3b6b">Red Core</span> and the
+      <span style="color:#21e6ff">Blue Core</span> — face off on a 9×10 grid.
+      Each piece shows its name in <b>Chinese</b> and <b>English</b>.
+      Red always moves first. You win by capturing the enemy <b>General</b>
+      (or leaving it with no legal move).
+    </p>
+
+    <h3>The Pieces</h3>
+    <table class="pieces">
+      <tr><th>Piece</th><th>红色 Red</th><th>蓝色 Blue</th><th>Moves</th></tr>
+      <tr><td>General</td><td>帅</td><td>将</td><td>1 step orthogonally inside the palace. The two Generals may not face each other on an open file.</td></tr>
+      <tr><td>Advisor</td><td>仕</td><td>士</td><td>1 step diagonally inside the palace.</td></tr>
+      <tr><td>Elephant</td><td>相</td><td>象</td><td>Exactly 2 steps diagonally; cannot jump; stays on its own side of the river.</td></tr>
+      <tr><td>Horse</td><td>马</td><td>马</td><td>Knight move (1+2); blocked if the adjacent "leg" square is occupied.</td></tr>
+      <tr><td>Chariot</td><td>车</td><td>車</td><td>Any distance orthogonally, like a rook.</td></tr>
+      <tr><td>Cannon</td><td>炮</td><td>砲</td><td>Moves like a rook, but captures only by jumping exactly one piece (the screen).</td></tr>
+      <tr><td>Soldier</td><td>兵</td><td>卒</td><td>Forward 1 step; after crossing the river may also move sideways. Never backward.</td></tr>
+    </table>
+
+    <h3>Controls</h3>
+    <ul>
+      <li><b>Select:</b> click one of your pieces.</li>
+      <li><b>Move:</b> click a highlighted (glowing) square.</li>
+      <li><b>New game:</b> press <b>N</b> or click NEW GAME.</li>
+      <li><b>Rules:</b> press <b>R</b> or click HOW TO PLAY.</li>
+      <li><b>Modes:</b> VS AI (you are Red) or 2 PLAYERS (hot-seat).</li>
+    </ul>
+
+    <h3>Winning</h3>
+    <p>
+      Deliver <b>checkmate</b> — put the enemy General in check with no legal
+      escape — or capture it directly. In Xiangqi, being unable to move at all
+      (even without check) is also a loss. The river ("楚河 漢界") splits the
+      board; only Soldiers, Horses, Chariots and Cannons may cross it.
+    </p>
+
+    <div class="row" style="margin-top:14px">
+      <button class="btn" id="rulesClose2">GOT IT</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/game.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // second close button inside modal
+  document.getElementById('rulesClose2').addEventListener('click', function(){
+    document.getElementById('rulesModal').classList.remove('show');
+  });
+  // close modal by clicking the dark overlay
+  document.getElementById('rulesModal').addEventListener('click', function(e){
+    if (e.target === this) this.classList.remove('show');
+  });
+</script>
+</body>
+</html>

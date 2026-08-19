@@ -1,0 +1,325 @@
+/* ============================================================
+   NEON XIANGQI - Stylesheet (sci-fi / electronic theme)
+   ============================================================ */
+:root {
+  --bg0: #04060d;
+  --bg1: #0a1020;
+  --grid: #1de9ff;
+  --grid-dim: rgba(29, 233, 255, 0.28);
+  --red: #ff3b6b;
+  --red-glow: rgba(255, 59, 107, 0.75);
+  --blue: #21e6ff;
+  --blue-glow: rgba(33, 230, 255, 0.75);
+  --accent: #ff2bd6;
+  --text: #d6f4ff;
+  --muted: #6f8ba5;
+  --panel: rgba(10, 18, 34, 0.82);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(1200px 800px at 50% -10%, #0c1830 0%, transparent 60%),
+    radial-gradient(900px 700px at 90% 110%, #160a26 0%, transparent 55%),
+    var(--bg0);
+  color: var(--text);
+  font-family: 'Orbitron', 'Rajdhani', 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--blue); }
+
+#app {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 18px 16px 60px;
+}
+
+header.title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+header.title h1 {
+  font-size: clamp(26px, 5vw, 44px);
+  letter-spacing: 6px;
+  margin: 6px 0 2px;
+  background: linear-gradient(90deg, var(--red), var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px rgba(255, 43, 214, 0.25);
+}
+header.title .sub {
+  color: var(--muted);
+  letter-spacing: 3px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { order: 2; }
+}
+
+.board-wrap {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(13,24,46,0.9), rgba(6,10,20,0.95));
+  border: 1px solid rgba(29, 233, 255, 0.25);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 0 40px rgba(33, 230, 255, 0.08), inset 0 0 60px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.board-wrap::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+canvas#board {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.status-bar {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.turn-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(29,233,255,0.3);
+  background: rgba(8,16,30,0.7);
+}
+.turn-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+}
+.turn-dot.red { background: var(--red); color: var(--red); }
+.turn-dot.blue { background: var(--blue); color: var(--blue); }
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid rgba(29, 233, 255, 0.18);
+  border-radius: 12px;
+  padding: 14px;
+}
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+button.btn {
+  flex: 1 1 auto;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 1px;
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(33,230,255,0.16), rgba(33,230,255,0.04));
+  border: 1px solid rgba(33, 230, 255, 0.4);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+}
+button.btn:hover {
+  box-shadow: 0 0 18px rgba(33, 230, 255, 0.35);
+  transform: translateY(-1px);
+}
+button.btn:active { transform: translateY(0); }
+button.btn.active {
+  background: linear-gradient(180deg, rgba(255,43,214,0.30), rgba(255,43,214,0.08));
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(255,43,214,0.4);
+}
+button.btn.small { flex: 0 0 auto; padding: 8px 10px; }
+
+.seg {
+  display: flex; gap: 6px;
+}
+.seg .btn { flex: 1; }
+
+.legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.legend .it { display: flex; align-items: center; gap: 6px; }
+.legend .sw {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.4);
+  flex: 0 0 auto;
+}
+.legend .sw.red { background: rgba(255,59,107,0.25); border-color: var(--red); }
+.legend .sw.blue { background: rgba(33,230,255,0.25); border-color: var(--blue); }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(2,4,10,0.82);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 18px;
+  z-index: 50;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  width: min(720px, 100%);
+  max-height: 86vh;
+  overflow: auto;
+  background: linear-gradient(180deg, #0a1426, #060b16);
+  border: 1px solid rgba(33,230,255,0.35);
+  border-radius: 14px;
+  box-shadow: 0 0 50px rgba(33,230,255,0.18);
+  padding: 22px 24px;
+}
+.modal h2 {
+  margin-top: 0;
+  letter-spacing: 3px;
+  color: var(--blue);
+}
+.modal h3 { color: var(--accent); letter-spacing: 1px; margin-top: 18px; }
+.modal p, .modal li { line-height: 1.6; color: var(--text); font-size: 14px; }
+.modal .keys { color: var(--muted); font-size: 13px; }
+.modal .close-x {
+  float: right; cursor: pointer; border: none; background: none;
+  color: var(--muted); font-size: 22px; font-family: inherit;
+}
+table.pieces {
+  width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px;
+}
+table.pieces th, table.pieces td {
+  border: 1px solid rgba(29,233,255,0.2);
+  padding: 6px 8px; text-align: left;
+}
+table.pieces th { color: var(--blue); }
+
+.footer-note {
+  text-align: center; color: var(--muted); font-size: 11px;
+  letter-spacing: 1px; margin-top: 26px;
+}
+
+/* Captured-pieces trays (above / below the board) */
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 5px 8px;
+  margin: 0 auto;
+}
+.tray-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-right: 8px;
+  opacity: 0.75;
+}
+.tray .chip {
+  position: relative;
+  width: 38px;
+  height: 34px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.tray .chip svg {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  filter: drop-shadow(0 0 3px rgba(33, 230, 255, 0.4));
+}
+.tray .chip .gly {
+  position: relative;
+  font-family: "KaiTi","STKaiti","Kaiti SC","DFKai-SB","楷体",serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1;
+}
+.tray .chip.red .gly { color: var(--red); }
+.tray .chip.blue .gly { color: var(--blue); }
+
+/* Fullscreen: enlarge the board area to fill the screen */
+#boardWrap:fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100vw;
+  height: 100vh;
+  background: #04060d;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+#boardWrap:fullscreen canvas#board {
+  width: auto;
+  height: calc(100vh - 90px);
+  max-width: 100vw;
+}
+
+/* Banner for win/lose */
+.banner {
+  position: absolute; inset: 0;
+  display: none;
+  align-items: center; justify-content: center;
+  flex-direction: column;
+  background: rgba(4,6,13,0.55);
+  backdrop-filter: blur(2px);
+  z-index: 5;
+}
+.banner.show { display: flex; }
+.banner .big {
+  font-size: clamp(30px, 7vw, 64px);
+  letter-spacing: 6px;
+  text-shadow: 0 0 30px currentColor;
+}
+.banner.win .big { color: var(--blue); }
+.banner.lose .big { color: var(--red); }
+.banner .sub2 { color: var(--text); margin: 8px 0 16px; letter-spacing: 2px; }
