@@ -1,6 +1,12 @@
 .workbuddy/*
 !.workbuddy/memory/
 !.workbuddy/memory/**
+
+# 本机私有运行时文件，绝对不能同步（两台会互相覆盖打架）
+.workbuddy/memory/DEVICE
+.workbuddy/memory/INBOX.md
+.workbuddy/memory/.watch_state.json
+
 node_modules/
 .wrangler/
 *.log

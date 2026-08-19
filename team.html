@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>协作看板 · 两台 WorkBuddy</title>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--line:#e5e7eb;--txt:#1f2937;--sub:#6b7280;--accent:#2563eb;--green:#16a34a;--amber:#d97706;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);padding:20px;max-width:1100px;margin:0 auto}
+  h1{font-size:20px;margin-bottom:4px}
+  .sub{color:var(--sub);font-size:13px;margin-bottom:20px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card h2{font-size:14px;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+  .dev{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .dev:last-child{border:0}
+  .dot{width:9px;height:9px;border-radius:50%;background:#cbd5e1}
+  .dot.on{background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+  .task{padding:10px;border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
+  .task .t{font-weight:600;font-size:14px}
+  .task .m{font-size:12px;color:var(--sub);margin-top:3px}
+  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:#eef2ff;color:var(--accent)}
+  .badge.doing{background:#fef3c7;color:var(--amber)}
+  .badge.done{background:#dcfce7;color:var(--green)}
+  .msg{font-size:13px;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .msg .who{color:var(--accent);font-weight:600}
+  .full{grid-column:1/-1}
+  .time{font-size:11px;color:var(--sub)}
+</style>
+</head>
+<body>
+  <h1>🤝 协作看板</h1>
+  <div class="sub">两台 WorkBuddy 实时同步 · 每 5 秒刷新 · <span id="clock"></span></div>
+  <div class="grid">
+    <div class="card"><h2>在线设备</h2><div id="presence"></div></div>
+    <div class="card"><h2>最新消息</h2><div id="messages"></div></div>
+    <div class="card full"><h2>任务板</h2><div id="tasks"></div></div>
+  </div>
+<script>
+const API="/api/team";
+const esc=s=>(s||"").replace(/[<>&]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;"}[c]));
+async function load(){
+  try{
+    const r=await fetch(API+"?action=poll&device=dashboard").then(r=>r.json());
+    // 在线
+    document.getElementById("presence").innerHTML=(r.presence||[]).map(p=>{
+      const on=(Date.now()-new Date(p.last_seen.replace(" ","T")+"Z"))<120000;
+      return `<div class="dev"><span class="dot ${on?'on':''}"></span><b>${esc(p.label)}</b>
+        <span class="time">${on?'在线':'离线'} · ${esc(p.last_seen)}</span>
+        ${p.current_task?`<span class="time">· ${esc(p.current_task)}</span>`:''}</div>`;
+    }).join("")||"<div class='sub'>暂无设备上线</div>";
+    // 消息
+    const mr=await fetch(API+"?action=messages&device=dashboard").then(r=>r.json());
+    document.getElementById("messages").innerHTML=(mr.messages||[]).slice(0,15).map(m=>
+      `<div class="msg"><span class="who">${esc(m.from_device)}→${esc(m.to_device)}</span>
+       ${esc(m.content)}<div class="time">${esc(m.created_at)}</div></div>`).join("")||"<div class='sub'>暂无消息</div>";
+    // 任务
+    document.getElementById("tasks").innerHTML=(r.tasks||[]).map(t=>
+      `<div class="task"><span class="badge ${t.status}">${t.status}</span>
+       <span class="t"> #${t.id} ${esc(t.title)}</span>
+       <div class="m">${t.claimed_by?'认领：'+esc(t.claimed_by)+' · ':''}${esc(t.detail||'')}</div></div>`
+    ).join("")||"<div class='sub'>暂无任务</div>";
+  }catch(e){console.error(e)}
+  document.getElementById("clock").textContent=new Date().toLocaleTimeString();
+}
+load();setInterval(load,5000);
+</script>
+</body>
+</html>

@@ -1,42 +1,75 @@
 @echo off
 chcp 65001 >nul
-echo ================================================
-echo   Allsoft.asia 跨设备同步 - 一键配置
-echo   把项目克隆到当前目录，并设好 git 身份
-echo ================================================
+setlocal enabledelayedexpansion
+title 接入 WorkBuddy 协作总线
+
+echo ========================================
+echo   把这台电脑接入协作总线
+echo   接完两台就能同时干活了
+echo ========================================
 echo.
 
-where git >nul 2>nul
-if %errorlevel% neq 0 (
-  echo [错误] 没找到 git。请先安装 Git：https://git-scm.com/downloads
-  pause
-  exit /b 1
+REM ---- 1. 定目录 ----
+set "TARGET=%USERPROFILE%\Allsoft.asia"
+if exist "D:\WB" set "TARGET=D:\WB\Allsoft.asia"
+
+echo [1/5] 项目目录: %TARGET%
+
+REM ---- 2. 拉代码 ----
+if exist "%TARGET%\.git" (
+    echo [2/5] 已存在，拉取最新...
+    cd /d "%TARGET%"
+    git pull --rebase --autostash origin main
+) else (
+    echo [2/5] 首次克隆...
+    git clone https://github.com/ugo2000/allsoft.asia.git "%TARGET%"
+    cd /d "%TARGET%"
 )
 
-if exist allsoft.asia (
-  echo [提示] allsoft.asia 文件夹已存在，跳过克隆，直接更新身份配置。
-  cd allsoft.asia
-) else (
-  echo [1/3] 正在克隆仓库...
-  git clone https://github.com/ugo2000/allsoft.asia.git allsoft.asia
-  if %errorlevel% neq 0 (
-    echo [错误] 克隆失败，请检查网络后重试。
+if errorlevel 1 (
+    echo.
+    echo [!] git 失败了。八成是没装 git 或者网络不通。
+    echo     装 git: https://git-scm.com/download/win
     pause
     exit /b 1
-  )
-  cd allsoft.asia
 )
 
-echo [2/3] 设置 git 身份...
+REM ---- 3. git 身份 ----
+echo [3/5] 设置 git 身份...
 git config user.name "ugo2000"
 git config user.email "ugo2000@users.noreply.github.com"
+git config pull.rebase true
 
-echo [3/3] 完成！
+REM ---- 4. 给本机起个名 ----
+echo [4/5] 给这台电脑起名...
+set "DEVNAME="
+for /f "tokens=*" %%i in ('hostname') do set "DEVNAME=%%i"
+set "DEVNAME=%DEVNAME: =-%"
+if not exist "%TARGET%\.workbuddy\memory" mkdir "%TARGET%\.workbuddy\memory"
+if not exist "%TARGET%\.workbuddy\memory\devices" mkdir "%TARGET%\.workbuddy\memory\devices"
+> "%TARGET%\.workbuddy\memory\DEVICE" echo !DEVNAME!
+echo      本机代号: !DEVNAME!
+
+REM ---- 5. 上线打个招呼 ----
+echo [5/5] 接入总线...
+where python >nul 2>nul
+if errorlevel 1 (
+    echo      没找到 python，用 curl 上线
+    curl -s -X POST https://allsoft.asia/api/team -H "Content-Type: application/json" -d "{\"action\":\"heartbeat\",\"device\":\"!DEVNAME!\",\"label\":\"!DEVNAME!\",\"status\":\"online\"}" >nul
+    curl -s -X POST https://allsoft.asia/api/team -H "Content-Type: application/json" -d "{\"action\":\"send\",\"device\":\"!DEVNAME!\",\"to\":\"all\",\"content\":\"我上线了，可以派活\"}" >nul
+) else (
+    python team.py send "我上线了，可以派活" --device !DEVNAME!
+    python team.py poll --device !DEVNAME!
+)
+
 echo.
-echo 请用 WorkBuddy 打开这个文件夹即可开始协同：
-echo   %cd%
+echo ========================================
+echo   接好了！
 echo.
-echo WorkBuddy 会自动读取协作记忆（.workbuddy/memory/SYNC.md）
-echo 注意：两台电脑不要同时开着 WorkBuddy 改同一份记忆。
+echo   现在跟这台电脑的 WorkBuddy 说：
+echo   「读 .workbuddy/memory/SYNC.md，接入协作总线开始干活」
+echo.
+echo   随时看两台状态: https://allsoft.asia/team
+echo ========================================
 echo.
 pause
