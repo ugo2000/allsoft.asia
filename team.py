@@ -6,7 +6,7 @@
 用法（device 名字两台必须不同，比如 beijing / shanghai）：
   python team.py poll                          # 拉消息+任务+在线状态（最常用，循环调它）
   python team.py send "文案初稿写好了" [--to all]
-  python team.py newtask "写第22篇OPC文章" [--detail "..."] [--pri 2]
+  python team.py newtask "写一篇新博客文章" [--detail "..."] [--pri 2]
   python team.py claim 5                        # 认领5号任务（原子，抢不到会告诉你）
   python team.py done 5 "已发头条，链接xxx"
   python team.py board                          # 看任务板

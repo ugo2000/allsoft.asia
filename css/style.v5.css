@@ -295,7 +295,7 @@ ul, ol { padding-left: 1.5rem; }
 .faq-answer-inner { padding: 0 24px 20px; color: var(--c-text-light); font-size: .95rem; line-height: 1.7; }
 
 /* ---------- Blog ---------- */
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
 .blog-card {
   background: var(--c-bg); border: 1px solid var(--c-border);
   border-radius: var(--radius); overflow: hidden; transition: all .3s;

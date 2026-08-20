@@ -26,8 +26,7 @@ Decision quality-assurance service for AI agents: before an AI executes a major 
 ## Blog Posts
 
 1. [2026 Free AI Tools Guide](https://allsoft.asia/blog/ai-tools-2026) - Comprehensive guide to free AI tools accessible in China without VPN
-2. [One Person Company (OPC) Guide](https://allsoft.asia/blog/opc-one-person-company) - Practical guide to starting a one-person company in the AI era
-3. [Free Resources for Zero-Cost Business](https://allsoft.asia/blog/free-resources) - How to use GitHub, Cloudflare, and other free resources to build an online business
+2. [Free Resources for Zero-Cost Start](https://allsoft.asia/blog/free-resources) - How to use GitHub, Cloudflare, and other free resources to start an online business
 
 ## Technology
 
