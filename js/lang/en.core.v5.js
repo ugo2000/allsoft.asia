@@ -463,7 +463,7 @@ window.I18N_EN = {
 "contact.h1": "Contact Us",
 "contact.sub": "Say whatever's on your mind",
 "contact.info.t": "Contact channels",
-"contact.info.email": "📧 Email: <a href=\"mailto:ugo2000@126.com\">ugo2000@126.com</a>",
+"contact.info.email": "📧 Email: <a href=\"mailto:hello@allsoft.asia\">hello@allsoft.asia</a>",
 "contact.info.chat": "💬 Live chat: <a href=\"/chat\">ChatHub</a>",
 "contact.info.github": "💻 GitHub: <a href=\"https://github.com/ugo2000\">@ugo2000</a>",
 "contact.reply.t": "Response time",
