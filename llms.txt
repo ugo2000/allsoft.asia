@@ -1,6 +1,6 @@
 # AllSoft.asia
 
-> AllSoft.asia is a one-person independent software studio's collection of self-built software. Current products: ChatHub online chat (live at chathub.asia) and Devil's Advocate AI decision QA service (incubating). All products run on Cloudflare's global edge network, accessible directly in China without VPN.
+> AllSoft.asia is the self-built software collection of the software development arm of Beijing Zhuao Science And Technology Co., Ltd. Current products: ChatHub online chat (live at chathub.asia) and Devil's Advocate AI decision QA service (incubating). All products run on Cloudflare's global edge network, accessible directly in China without VPN.
 
 ## Products
 
@@ -20,7 +20,7 @@ Decision quality-assurance service for AI agents: before an AI executes a major 
 - Pricing: https://allsoft.asia/pricing
 - FAQ: https://allsoft.asia/faq
 - Blog: https://allsoft.asia/blog
-- About the studio: https://allsoft.asia/about
+- About the dev arm: https://allsoft.asia/about
 - Contact: https://allsoft.asia/contact
 
 ## Blog Posts
