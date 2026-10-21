@@ -237,14 +237,35 @@ test('404 responses pass through', async () => {
   assert.equal(res.status, 404);
 });
 
-test('HEAD requests are not converted', async () => {
+test('HEAD with markdown accept returns markdown headers (empty body)', async () => {
   const request = new Request('https://allsoft.asia/', {
     method: 'HEAD',
     headers: { Accept: 'text/markdown' }
   });
-  const original = htmlResponse('<h1>Hi</h1>');
-  const res = await onRequest(ctx(request, async () => original));
-  assert.equal(res, original);
+  const res = await onRequest(ctx(request, async () => new Response(null, {
+    status: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' }
+  })));
+  assert.equal(res.headers.get('content-type'), 'text/markdown; charset=utf-8');
+  assert.match(res.headers.get('x-markdown-tokens') || '', /^\d+$/);
+});
+
+test('internal/dev paths are blocked with 404 even with markdown accept', async () => {
+  for (const p of [
+    '/.workbuddy/memory/SYNC.md',
+    '/team.py',
+    '/AUTO_SETUP.bat',
+    '/__pycache__/team.cpython-312.pyc',
+    '/CROSS_DEVICE_SETUP.md'
+  ]) {
+    const request = new Request('https://allsoft.asia' + p, {
+      headers: { Accept: 'text/markdown' }
+    });
+    const res = await onRequest(ctx(request, async () => {
+      throw new Error('next() must not run for blocked paths');
+    }));
+    assert.equal(res.status, 404, p);
+  }
 });
 
 test('pages.dev redirect still wins over markdown negotiation', async () => {

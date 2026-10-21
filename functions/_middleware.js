@@ -25,6 +25,18 @@ const PAGES_DEV_HOST = 'allsoft-asia.pages.dev';
 // Cloudflare adds when Markdown for Agents is enabled for a zone.
 const CONTENT_SIGNAL = 'ai-train=yes, search=yes, ai-input=yes';
 
+// Internal / dev-side paths that must never be served to visitors.
+// .assetsignore is not honored by `wrangler pages deploy` (dotfiles are not
+// uploaded), so the same blocklist is enforced here at request time.
+const BLOCKED_PATH_RE = /^\/(\.workbuddy|\.git|\.wrangler|\.github)(\/|$)|\/__pycache__(\/|$)/;
+const BLOCKED_EXT_RE = /\.(py|pyc|bat|cmd|sh|log|tmp)$/i;
+const BLOCKED_FILES = new Set(['/cross_device_setup.md', '/setup_guide.md']);
+
+function isBlockedPath(pathname) {
+  const lower = pathname.toLowerCase();
+  return BLOCKED_PATH_RE.test(lower) || BLOCKED_EXT_RE.test(lower) || BLOCKED_FILES.has(lower);
+}
+
 // ---------------------------------------------------------------------------
 // Entry point
 // ---------------------------------------------------------------------------
@@ -42,7 +54,15 @@ export async function onRequest(context) {
     });
   }
 
-  // 2. Markdown for Agents content negotiation.
+  // 2. Internal/dev files are never served (see BLOCKED_PATH_RE above).
+  if (isBlockedPath(url.pathname)) {
+    return new Response('Not Found', {
+      status: 404,
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+    });
+  }
+
+  // 3. Markdown for Agents content negotiation.
   if (wantsMarkdown(request)) {
     return serveMarkdown(context, url);
   }
@@ -51,7 +71,7 @@ export async function onRequest(context) {
 }
 
 function wantsMarkdown(request) {
-  if (request.method !== 'GET') return false;
+  if (request.method !== 'GET' && request.method !== 'HEAD') return false;
   const accept = request.headers.get('accept') || '';
   return accept.toLowerCase().includes('text/markdown');
 }

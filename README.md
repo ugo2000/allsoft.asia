@@ -38,7 +38,8 @@ AI驱动的智能软件解决方案 - 静态多页网站
 - 输出结构：YAML frontmatter（title/description/image）+ 正文 markdown + 末尾 JSON-LD `json` 代码块
 - 响应头：`Content-Type: text/markdown; charset=utf-8`、`Vary: Accept`、`x-markdown-tokens`（估算 token 数）、`content-signal`
 - 转换器零依赖（`functions/_middleware.js` 内），Workers 运行时和 Node 通用
-- 单测：`node --test test/markdown-negotiation.test.mjs`（24 条：转换器 + 中间件 + 全站页面冒烟）
+- 单测：`node --test test/markdown-negotiation.test.mjs`（25 条：转换器 + 中间件 + 全站页面冒烟）
+- 中间件同时拦截内部文件路径（`.workbuddy`、`*.py`、`*.bat` 等）返回 404，防部署泄露
 - 参考：Cloudflare Markdown for Agents 免费套餐不自带，故应用层实现
 
 ```bash
