@@ -29,6 +29,21 @@ AI驱动的智能软件解决方案 - 静态多页网站
 - sitemap.xml
 - robots.txt（允许AI爬虫）
 - llms.txt（GEO优化）
+- **Markdown for Agents**：`Accept: text/markdown` 内容协商（见下）
+
+## Markdown for Agents（AI 智能体优化）
+
+`functions/_middleware.js` 实现内容协商：请求带 `Accept: text/markdown` 头时返回 markdown 版页面，浏览器和不带该头的请求照常拿 HTML。
+
+- 输出结构：YAML frontmatter（title/description/image）+ 正文 markdown + 末尾 JSON-LD `json` 代码块
+- 响应头：`Content-Type: text/markdown; charset=utf-8`、`Vary: Accept`、`x-markdown-tokens`（估算 token 数）、`content-signal`
+- 转换器零依赖（`functions/_middleware.js` 内），Workers 运行时和 Node 通用
+- 单测：`node --test test/markdown-negotiation.test.mjs`（24 条：转换器 + 中间件 + 全站页面冒烟）
+- 参考：Cloudflare Markdown for Agents 免费套餐不自带，故应用层实现
+
+```bash
+curl -H "Accept: text/markdown" https://allsoft.asia/products
+```
 
 ## 部署
 1. 推送到 GitHub

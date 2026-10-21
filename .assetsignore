@@ -1,0 +1,15 @@
+# Files excluded from the Cloudflare Pages upload (visitors never need these).
+# NOTE: without this, .workbuddy/ (internal memory incl. contact details)
+# was publicly readable at https://allsoft.asia/.workbuddy/...
+.workbuddy
+.git
+.github
+__pycache__
+*.pyc
+*.py
+*.bat
+*.sh
+node_modules
+.wrangler
+*.log
+*.tmp

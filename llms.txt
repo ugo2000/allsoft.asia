@@ -41,6 +41,16 @@ Foreign-trade RFQ inquiry platform: buyers post sourcing requests, suppliers wor
 - SSL/CDN: Cloudflare (automatic)
 - No servers, no VPN required, China-accessible
 
+## Agent Access
+
+All pages support Markdown for Agents content negotiation. Send an `Accept: text/markdown` header to receive a markdown rendering instead of HTML:
+
+````
+curl -H "Accept: text/markdown" https://allsoft.asia/products
+````
+
+The markdown response contains YAML frontmatter (title, description, image), the page body as markdown, and any JSON-LD structured data as a fenced json block. Responses carry `Content-Type: text/markdown; charset=utf-8`, `Vary: Accept` and an `x-markdown-tokens` count. Requests without the header receive HTML as usual.
+
 ## Contact
 
 - Email: hello@allsoft.asia
