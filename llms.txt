@@ -1,6 +1,6 @@
 # AllSoft.asia
 
-> AllSoft.asia is the self-built software collection of the software development arm of Beijing Zhuao Science And Technology Co., Ltd. Current products: ChatHub online chat (live at chathub.asia), Devil's Advocate AI decision QA service (live) and TradeCN global RFQ marketplace (live at tradecn.asia). All products run on Cloudflare's global edge network, accessible directly in China without VPN.
+> AllSoft.asia is the self-built software collection of the software development arm of Beijing Zhuao Science And Technology Co., Ltd. Current products: ChatHub online chat (live at chathub.asia), Devil's Advocate AI decision QA service (live), TradeCN global RFQ marketplace (live at tradecn.asia) and smallfigure original asset gallery (live at smallfigure.com). All products run on Cloudflare's global edge network, accessible directly in China without VPN.
 
 ## Products
 
@@ -13,6 +13,9 @@ Decision quality-assurance service for AI agents: before an AI executes a major 
 ### TradeCN / Global RFQ Marketplace (Live)
 Foreign-trade RFQ inquiry platform: buyers post sourcing requests, suppliers worldwide quote in real time. Email-verified registration, pay-per-use RFQ credits ($1 = 10 RFQs), Payoneer and other payment methods, Verified Business badge via Payoneer Checkout. Independent domain: tradecn.asia. Details: https://allsoft.asia/products/tradecn
 
+### smallfigure / Original Asset Gallery (Live)
+Gallery of original character art and game assets: hand-drawn character portraits, weapons and gear, creatures and badges, every piece with a transparent background. Filter by category, pixel size and file size, sort by size or name, search by Chinese or English name, download full-resolution PNG (512 / 1024 px) from the lightbox. Bilingual UI, no signup. Independent domain: smallfigure.com. Details: https://allsoft.asia/products/smallfigure
+
 ## Key Pages
 
 - Homepage: https://allsoft.asia/
@@ -20,6 +23,7 @@ Foreign-trade RFQ inquiry platform: buyers post sourcing requests, suppliers wor
 - ChatHub product page: https://allsoft.asia/products/chathub
 - Devil's Advocate product page: https://allsoft.asia/products/devils-advocate
 - TradeCN product page: https://allsoft.asia/products/tradecn
+- smallfigure asset gallery page: https://allsoft.asia/products/smallfigure
 - ChatHub (live chat): https://allsoft.asia/chat
 - Pricing: https://allsoft.asia/pricing
 - FAQ: https://allsoft.asia/faq

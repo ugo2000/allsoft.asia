@@ -11,6 +11,7 @@ AI驱动的智能软件解决方案 - 静态多页网站
 ## 页面结构
 - `index.html` - 首页
 - `products.html` - 产品
+- `products/smallfigure.html` - smallfigure 原创素材图鉴
 - `chat.html` - 在线聊天（iframe嵌入chathub.asia）
 - `pricing.html` - 定价
 - `faq.html` - 常见问题
